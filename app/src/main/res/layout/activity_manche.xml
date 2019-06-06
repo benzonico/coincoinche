@@ -32,7 +32,27 @@
                       android:id="@+id/euxButton"/>
     </RelativeLayout>
     <!-- Contrat -->
-
+    <RelativeLayout android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+        <TextView android:layout_alignParentLeft="true"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/contractLabel" android:textSize="24sp"
+                  android:text="@string/contract"
+                  android:paddingBottom="30dp"/>
+        <TextView android:layout_centerInParent="true"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/contract" android:textSize="24sp" android:paddingBottom="30dp"/>
+        <SeekBar android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:max="12"
+                 android:layout_below="@id/contract"
+                 android:id="@+id/contractBar"
+        />
+    </RelativeLayout>
     <!--Coinche-->
 
     <!-- Belote -->
