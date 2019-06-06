@@ -91,7 +91,6 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         val mygame = data?.getParcelableExtra<Game>("Game")
-        println(mygame)
         if(mygame != null) {
             games.add(mygame)
             adapter?.notifyDataSetChanged()

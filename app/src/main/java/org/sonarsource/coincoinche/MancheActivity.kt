@@ -290,7 +290,6 @@ class MancheActivity : AppCompatActivity() {
 
     private fun refreshScore() {
         val nous_score = score_slider.progress
-        println(nous_score)
         if (nous_score == 0) {
             euxScore.text = "Capot".toEditable()
             nousScore.text = "0".toEditable()
