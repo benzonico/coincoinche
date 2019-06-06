@@ -11,5 +11,6 @@
     <string name="coincheAvec">Coinché</string>
     <string name="coincheSurcoinche">Surcoinché</string>
     <string name="total">Total</string>
+    <string name="score">Score</string>
 
 </resources>

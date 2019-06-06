@@ -93,37 +93,71 @@
                       android:id="@+id/coincheSurcoinche" android:layout_marginLeft="156dp"/>
     </RelativeLayout>
 
-    <!-- Belote -->
+    <!-- score -->
     <RelativeLayout android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="10dp">
-
-    </RelativeLayout>
-    <RelativeLayout android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp">
-        <ToggleButton android:layout_width="120dp"
-                      android:layout_height="wrap_content"
-                      android:textOff="@string/nous"
-                      android:textOn="@string/nous"
-                      android:layout_alignParentLeft="true"
-                      android:id="@+id/nousButton2"/>
         <TextView android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
-                  android:text="@string/Belote"
+                  android:text="@string/score"
+                  android:textSize="24sp"
+                  android:gravity="center"
+                  android:layout_alignParentLeft="true"
+        />
+        <TextView android:layout_width="120dp"
+                  android:layout_height="wrap_content"
                   android:gravity="center"
                   android:layout_centerInParent="true"
+                  android:id="@+id/nousScore"/>
+
+        <TextView android:layout_width="120dp"
+                  android:layout_height="wrap_content"
+                  android:gravity="center"
+                  android:layout_centerVertical="true"
+                  android:layout_alignParentRight="true"
+                  android:id="@+id/euxScore"/>
+    </RelativeLayout>
+    <RelativeLayout android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+        <SeekBar android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:max="162"
+                 android:id="@+id/score_diz"
+                 android:paddingBottom="20dp" android:scrollbarSize="10dp"/>
+<!--        <SeekBar android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:max="9"
+                 android:layout_below="@id/score_diz"
+                 android:id="@+id/score_unit"/>-->
+    </RelativeLayout>
+    <!-- Belote -->
+    <RelativeLayout android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+        <ToggleButton android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:textOff="@string/nous"
+        android:textOn="@string/nous"
+        android:layout_alignParentLeft="true"
+        android:id="@+id/nousButton2"/>
+        <TextView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Belote"
+        android:gravity="center"
+        android:layout_centerInParent="true"
         />
         <ToggleButton android:layout_width="120dp"
-                      android:layout_height="wrap_content"
-                      android:textOff="@string/eux"
-                      android:textOn="@string/eux"
-                      android:layout_alignParentRight="true"
-                      android:id="@+id/euxButton2"/>
+        android:layout_height="wrap_content"
+        android:textOff="@string/eux"
+        android:textOn="@string/eux"
+        android:layout_alignParentRight="true"
+        android:id="@+id/euxButton2"/>
     </RelativeLayout>
-    <!-- score -->
+    <!-- Total -->
     <RelativeLayout android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -132,7 +166,7 @@
                   android:layout_height="wrap_content"
                   android:gravity="center"
                   android:layout_alignParentLeft="true"
-                  android:id="@+id/nousScore"/>
+                  android:id="@+id/nousTotal"/>
         <TextView android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:text="@string/total"
@@ -145,12 +179,6 @@
                   android:gravity="center"
                   android:textOn="@string/eux"
                   android:layout_alignParentRight="true"
-                  android:id="@+id/euxScore"/>
-    </RelativeLayout>
-    <!-- Total -->
-    <RelativeLayout android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp">
+                  android:id="@+id/euxTotal"/>
     </RelativeLayout>
 </LinearLayout>

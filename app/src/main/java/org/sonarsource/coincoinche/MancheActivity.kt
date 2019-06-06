@@ -14,6 +14,8 @@ class MancheActivity : AppCompatActivity() {
         var coincheMultiplier = 1
         euxScore.text = "0"
         nousScore.text = "0"
+        euxTotal.text = "0"
+        nousTotal.text = "0"
 
         euxButton.setOnClickListener { view ->
             euxButton.isChecked = true
@@ -31,18 +33,18 @@ class MancheActivity : AppCompatActivity() {
         }
 
         coincheSans.setOnClickListener {view ->
-            coincheAvec.isChecked = false;
-            coincheSurcoinche.isChecked = false;
+            coincheAvec.isChecked = false
+            coincheSurcoinche.isChecked = false
             coincheMultiplier = 1
         }
         coincheAvec.setOnClickListener { view ->
-            coincheSans.isChecked = false;
-            coincheSurcoinche.isChecked = false;
+            coincheSans.isChecked = false
+            coincheSurcoinche.isChecked = false
             coincheMultiplier = 2
         }
         coincheSurcoinche.setOnClickListener { view ->
-            coincheSans.isChecked = false;
-            coincheAvec.isChecked = false;
+            coincheSans.isChecked = false
+            coincheAvec.isChecked = false
             coincheMultiplier = 4
         }
 
@@ -66,10 +68,40 @@ class MancheActivity : AppCompatActivity() {
             }
         })
 
+        val scoreListener = object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
+                refreshScore()
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar) {
+                // Write code to perform some action when touch is started.
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar) {
+                // Write code to perform some action when touch is stopped.
+            }
+        }
+        score_diz.setOnSeekBarChangeListener(scoreListener)
+
         // TODO à la fin de la partie
         // val myGame = Game()
         // myGame.eux = 42
         // myGame.nous = 2000
         // gamesRef.child(id(this)).child((0..Int.MAX_VALUE).random().toString()).setValue(myGame)
+    }
+
+    private fun refreshScore() {
+        val nous_score = score_diz.progress// + score_unit.progress
+        val eux_score  = 162 - nous_score
+        if (nous_score == 0) {
+            euxScore.text = "Capot"
+            nousScore.text = "0"
+        } else if (eux_score == 0) {
+            nousScore.text = "Capot"
+            euxScore.text = "0"
+        } else {
+            euxScore.text = eux_score.toString()
+            nousScore.text = nous_score.toString()
+        }
     }
 }
