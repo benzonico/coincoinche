@@ -23,7 +23,6 @@ class PartieActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_partie)
 
-
         fab.setOnClickListener { view ->
             val intent = Intent(this, MancheActivity::class.java).apply {}
             startActivity(intent)
@@ -36,19 +35,15 @@ class PartieActivity : AppCompatActivity() {
 
 
         listView = findViewById(R.id.manches_list)
-        val manches = ArrayList<Manche>()
-        for (i in 0 until 24) {
-            val myManche = Manche()
-            myManche.eux = i * 1
-            myManche.nous = i * 10
-            manches.add(myManche)
-            Scoreeux += myManche.eux
-            Scorenous += myManche.nous
 
-        }
+
+        val  game = intent.getParcelableExtra<Game>("Game")
+        val manches = game.manches
 
         val adapter = MancheListAdapter(this, manches)
         listView.adapter = adapter
+
+
 
         //A revoir quand le stockage des scores sera fait.
         EuxScore = findViewById(R.id.scoreWholeMancheEux)

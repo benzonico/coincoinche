@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ListView
+import android.support.design.widget.FloatingActionButton
 /*import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener*/
@@ -23,9 +24,20 @@ class MainActivity : AppCompatActivity() {
 
         val userId = id(this)
 
+
         fab.setOnClickListener { view ->
             val intent = Intent(this, PartieActivity::class.java).apply {}
+            val myGame = Game()
+            /*ArrayList<Manche>()
+            for (i in 0 until 24) {
+                val myManche = Manche()
+                myManche.eux = i * 1
+                myManche.nous = i * 10
+                myGame.manches.add(myManche)
+            }*/
+            intent.putExtra("Game", myGame)
             startActivity(intent)
+
         }
 
         listView = findViewById(R.id.parties_list)
