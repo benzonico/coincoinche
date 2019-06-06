@@ -22,12 +22,26 @@ class PartieActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        listView = findViewById(R.id.manches_list)
+        /*listView = findViewById(R.id.parties_list)
         val listItems = arrayOfNulls<String>(24)
         for (i in 0 until 24) {
             listItems[i] = "PartieActivity"+i
         }
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems)
+        listView.adapter = adapter*/
+
+
+        listView = findViewById(R.id.manches_list)
+        val manches = ArrayList<Manche>()
+        for (i in 0 until 24) {
+            val myManche = Manche()
+            myManche.eux = i * 1
+            myManche.nous = i * 10
+            manches.add(myManche)
+        }
+
+        val adapter = MancheListAdapter(this, manches)
         listView.adapter = adapter
+
     }
 }

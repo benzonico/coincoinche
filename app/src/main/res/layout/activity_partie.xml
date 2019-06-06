@@ -7,12 +7,9 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-    <ListView
-            android:id="@+id/manches_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
 
 
+    <include layout="@layout/content_parties"/>
 
     <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"
