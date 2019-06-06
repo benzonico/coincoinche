@@ -7,6 +7,7 @@
         android:layout_height="match_parent"
         tools:context=".MancheActivity" android:orientation="vertical">
 
+    <!-- Preneur -->
     <RelativeLayout android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -29,5 +30,39 @@
                       android:textOn="@string/eux"
                       android:layout_alignParentRight="true"
                       android:id="@+id/euxButton"/>
+    </RelativeLayout>
+    <!-- Contrat -->
+
+    <!--Coinche-->
+
+    <!-- Belote -->
+    <RelativeLayout android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+    </RelativeLayout>
+    <RelativeLayout android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+        <ToggleButton android:layout_width="120dp"
+                      android:layout_height="wrap_content"
+                      android:textOff="@string/nous"
+                      android:textOn="@string/nous"
+                      android:layout_alignParentLeft="true"
+                      android:id="@+id/nousButton2"/>
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="@string/Belote"
+                  android:gravity="center"
+                  android:layout_centerInParent="true"
+        />
+        <ToggleButton android:layout_width="120dp"
+                      android:layout_height="wrap_content"
+                      android:textOff="@string/eux"
+                      android:textOn="@string/eux"
+                      android:layout_alignParentRight="true"
+                      android:id="@+id/euxButton2"/>
     </RelativeLayout>
 </LinearLayout>

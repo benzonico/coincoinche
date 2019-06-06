@@ -17,5 +17,11 @@ class MancheActivity : AppCompatActivity() {
             euxButton.isChecked = false
             nousButton.isChecked = true
         }
+        euxButton2.setOnClickListener { view ->
+            nousButton2.isChecked = false
+        }
+        nousButton2.setOnClickListener { view ->
+            euxButton2.isChecked = false
+        }
     }
 }
