@@ -1,5 +1,6 @@
 package org.sonarsource.coincoinche
 
+import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -9,6 +10,10 @@ import android.widget.SeekBar
 import kotlinx.android.synthetic.main.activity_manche.*
 import java.lang.NumberFormatException
 import kotlin.math.max
+import android.R.id.message
+import android.content.Intent
+
+
 
 class MancheActivity : AppCompatActivity() {
 
@@ -178,8 +183,19 @@ class MancheActivity : AppCompatActivity() {
             coincheMultiplier = 4
             computeScores()
         }
-
-        fab.setOnClickListener {
+        fab.setOnClickListener { view ->
+            val manche = Manche()
+            manche.eux = 42
+            manche.nous = 120
+            val intent = Intent()
+            intent.putExtra("Manche", manche)
+            setResult(0, intent)
+/*            val filename = "myfile"
+            val fileContents = "Hello world!"
+            baseContext.openFileOutput(filename, Context.MODE_PRIVATE).use {
+                it.write(fileContents.toByteArray())
+            }*/
+            finish()
         }
 
         contractBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {

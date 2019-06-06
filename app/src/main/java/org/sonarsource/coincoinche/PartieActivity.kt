@@ -18,14 +18,17 @@ class PartieActivity : AppCompatActivity() {
     private lateinit var NousScore: TextView
     private var Scoreeux: Int = 0
     private var Scorenous: Int = 0
+    private var game: Game? = null
+    private var adapter: MancheListAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_partie)
 
+        game = intent.getParcelableExtra<Game>("Game")
         fab.setOnClickListener { view ->
             val intent = Intent(this, MancheActivity::class.java).apply {}
-            startActivity(intent)
+            startActivityForResult(intent, 0)
         }
 
         EuxLabel = findViewById(R.id.labelWholeMancheEux)
@@ -37,10 +40,9 @@ class PartieActivity : AppCompatActivity() {
         listView = findViewById(R.id.manches_list)
 
 
-        val  game = intent.getParcelableExtra<Game>("Game")
-        val manches = game.manches
+        val manches = game?.manches
 
-        val adapter = MancheListAdapter(this, manches)
+        adapter = manches?.let { MancheListAdapter(this, it) }
         listView.adapter = adapter
 
 
@@ -51,5 +53,12 @@ class PartieActivity : AppCompatActivity() {
         NousScore = findViewById(R.id.scoreWholeMancheNous)
         NousScore.text = Scorenous.toString()
 
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        val manche = data?.getParcelableExtra<Manche>("Manche")
+        game?.addManche(manche)
+        adapter?.notifyDataSetChanged()
     }
 }

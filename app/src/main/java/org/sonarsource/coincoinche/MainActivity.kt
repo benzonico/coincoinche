@@ -42,12 +42,12 @@ class MainActivity : AppCompatActivity() {
 
         listView = findViewById(R.id.parties_list)
         val games = ArrayList<Game>()
-        for (i in 0 until 24) {
-            val myGame = Game()
-            myGame.eux = i * 10
-            myGame.nous = i * 100
-            games.add(myGame)
-        }
+//        for (i in 0 until 24) {
+//            val myGame = Game()
+//            myGame.eux = i * 10
+//            myGame.nous = i * 100
+//            games.add(myGame)
+//        }
 
         val adapter = PartiesListAdapter(this, games)
         listView.adapter = adapter

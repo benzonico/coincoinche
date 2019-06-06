@@ -31,6 +31,13 @@ class Game() : Parcelable {
         return 0
     }
 
+    fun addManche(manche: Manche?) {
+        if(manche == null) {
+            return
+        }
+        manches.add(manche)
+    }
+
     companion object CREATOR : Parcelable.Creator<Game> {
         override fun createFromParcel(parcel: Parcel): Game {
             return Game(parcel)
