@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.ArrayAdapter
 import android.widget.ListView
 
 import kotlinx.android.synthetic.main.activity_main.*
@@ -20,15 +19,11 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->
-            val intent = Intent(this, Partie::class.java).apply {}
+            val intent = Intent(this, PartieActivity::class.java).apply {}
             startActivity(intent)
         }
 
         listView = findViewById(R.id.parties_list)
-//        val listItems = arrayOfNulls<String>(24)
-//        for (i in 0 until 24) {
-//            listItems[i] = "Partie"+i
-//        }
         val games = ArrayList<Game>()
         for (i in 0 until 24) {
             val myGame = Game()
@@ -37,7 +32,6 @@ class MainActivity : AppCompatActivity() {
             games.add(myGame)
         }
         val adapter = PartiesListAdapter(this, games)
-//        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems)
         listView.adapter = adapter
     }
 
