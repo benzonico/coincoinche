@@ -13,6 +13,7 @@ import kotlin.math.max
 class MancheActivity : AppCompatActivity() {
 
     var coincheMultiplier = 1
+    var couleur = ""
 
     private fun computeScores() {
         if (!euxButton.isChecked && !nousButton.isChecked) return
@@ -90,7 +91,7 @@ class MancheActivity : AppCompatActivity() {
     }
 
     private fun round(scoreValue: Int): Int {
-        val unit =  scoreValue % 10
+        val unit = scoreValue % 10
         var diz = scoreValue - unit
         if (unit < 5) {
             return diz
@@ -108,46 +109,77 @@ class MancheActivity : AppCompatActivity() {
         euxTotal.text = "0"
         nousTotal.text = "0"
 
-        euxButton.setOnClickListener { view ->
+        couleur_coeur.setOnClickListener {
+            couleur_coeur.isChecked = true
+            couleur_pique.isChecked = false
+            couleur_carreau.isChecked = false
+            couleur_trefle.isChecked = false
+            couleur = "coeur"
+        }
+        couleur_pique.setOnClickListener {
+            couleur_coeur.isChecked = false
+            couleur_pique.isChecked = true
+            couleur_carreau.isChecked = false
+            couleur_trefle.isChecked = false
+            couleur = "pique"
+        }
+        couleur_carreau.setOnClickListener {
+            couleur_coeur.isChecked = false
+            couleur_pique.isChecked = false
+            couleur_carreau.isChecked = true
+            couleur_trefle.isChecked = false
+            couleur = "carreau"
+        }
+        couleur_trefle.setOnClickListener {
+            couleur_coeur.isChecked = false
+            couleur_pique.isChecked = false
+            couleur_carreau.isChecked = false
+            couleur_trefle.isChecked = true
+            couleur = "trefle"
+        }
+
+        euxButton.setOnClickListener {
             euxButton.isChecked = true
             nousButton.isChecked = false
             computeScores()
         }
-        nousButton.setOnClickListener { view ->
+        nousButton.setOnClickListener {
             euxButton.isChecked = false
             nousButton.isChecked = true
             computeScores()
         }
-        euxBelote.setOnClickListener { view ->
+        euxBelote.setOnClickListener {
             nousBelote.isChecked = false
             computeScores()
         }
-        nousBelote.setOnClickListener { view ->
+        nousBelote.setOnClickListener {
             euxBelote.isChecked = false
             computeScores()
         }
 
-        coincheSans.setOnClickListener {view ->
+        coincheSans.setOnClickListener {
+            coincheSans.isChecked = true
             coincheAvec.isChecked = false
             coincheSurcoinche.isChecked = false
             coincheMultiplier = 1
             computeScores()
         }
-        coincheAvec.setOnClickListener { view ->
+        coincheAvec.setOnClickListener {
             coincheSans.isChecked = false
+            coincheAvec.isChecked = true
             coincheSurcoinche.isChecked = false
             coincheMultiplier = 2
             computeScores()
         }
-        coincheSurcoinche.setOnClickListener { view ->
+        coincheSurcoinche.setOnClickListener {
             coincheSans.isChecked = false
             coincheAvec.isChecked = false
+            coincheSurcoinche.isChecked = true
             coincheMultiplier = 4
             computeScores()
         }
 
-        fab.setOnClickListener { view ->
-            println("scores !")
+        fab.setOnClickListener {
         }
 
         contractBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
@@ -185,7 +217,7 @@ class MancheActivity : AppCompatActivity() {
             }
         }
         score_slider.setOnSeekBarChangeListener(scoreListener)
-        euxScore.addTextChangedListener(object :TextWatcher {
+        euxScore.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
             }
 
@@ -235,7 +267,6 @@ class MancheActivity : AppCompatActivity() {
         })
 
 
-
         // TODO à la fin de la partie
         // val myGame = Game()
         // myGame.eux = 42
@@ -262,6 +293,7 @@ class MancheActivity : AppCompatActivity() {
 
     // handy extension methods
     fun String.toEditable(): Editable = Editable.Factory.getInstance().newEditable(this)
+
     fun EditText.placeCursorToEnd() {
         this.setSelection(this.text.length)
     }

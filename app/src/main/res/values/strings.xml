@@ -14,4 +14,8 @@
     <string name="score">Score</string>
     <string name="settingsUserId">User ID</string>
     <string name="copyLabel">Copy</string>
+    <string name="couleur_carreau">♦</string>
+    <string name="couleur_coeur">♥</string>
+    <string name="couleur_pique">♠</string>
+    <string name="couleur_trefle">♣</string>
 </resources>

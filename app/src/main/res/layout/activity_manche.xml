@@ -54,6 +54,50 @@
         />
 
     </RelativeLayout>
+    <!--Couleurs-->
+    <RelativeLayout android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+
+        <ToggleButton android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/couleur_coeur"
+                      android:textOff="@string/couleur_coeur"
+                      android:textOn="@string/couleur_coeur"
+                      android:textAlignment="center"/>
+
+        <ToggleButton android:layout_toRightOf="@+id/couleur_coeur"
+                      android:layout_toEndOf="@+id/couleur_coeur"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/couleur_pique"
+                      android:textOff="@string/couleur_pique"
+                      android:textOn="@string/couleur_pique"
+                      android:textAlignment="center"
+                      android:layout_centerInParent="true"
+        />
+
+        <ToggleButton android:layout_toRightOf="@+id/couleur_pique"
+                      android:layout_toEndOf="@+id/couleur_pique"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/couleur_carreau"
+                      android:textOff="@string/couleur_carreau"
+                      android:textOn="@string/couleur_carreau"
+                      android:textAlignment="center"
+        />
+
+        <ToggleButton android:layout_toRightOf="@+id/couleur_carreau"
+                      android:layout_toEndOf="@+id/couleur_carreau"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/couleur_trefle"
+                      android:textOff="@string/couleur_trefle"
+                      android:textOn="@string/couleur_trefle"
+                      android:textAlignment="center"
+        />
+
+    </RelativeLayout>
     <!--Coinche-->
     <RelativeLayout android:orientation="horizontal"
                     android:layout_width="match_parent"
@@ -63,7 +107,7 @@
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:id="@+id/coincheLabel" android:textSize="24sp"
-                  android:text="@string/coinche" />
+                  android:text="@string/coinche"/>
     </RelativeLayout>
 
     <RelativeLayout android:orientation="horizontal"
@@ -130,27 +174,27 @@
     </RelativeLayout>
     <!-- Belote -->
     <RelativeLayout android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="10dp">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
         <ToggleButton android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:textOff="@string/nous"
-        android:textOn="@string/nous"
-        android:layout_alignParentLeft="true"
-        android:id="@+id/nousBelote"/>
+                      android:layout_height="wrap_content"
+                      android:textOff="@string/nous"
+                      android:textOn="@string/nous"
+                      android:layout_alignParentLeft="true"
+                      android:id="@+id/nousBelote"/>
         <TextView android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/Belote"
-        android:gravity="center"
-        android:layout_centerInParent="true"
+                  android:layout_height="wrap_content"
+                  android:text="@string/Belote"
+                  android:gravity="center"
+                  android:layout_centerInParent="true"
         />
         <ToggleButton android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:textOff="@string/eux"
-        android:textOn="@string/eux"
-        android:layout_alignParentRight="true"
-        android:id="@+id/euxBelote"/>
+                      android:layout_height="wrap_content"
+                      android:textOff="@string/eux"
+                      android:textOn="@string/eux"
+                      android:layout_alignParentRight="true"
+                      android:id="@+id/euxBelote"/>
     </RelativeLayout>
     <!-- Total -->
     <RelativeLayout android:orientation="horizontal"
