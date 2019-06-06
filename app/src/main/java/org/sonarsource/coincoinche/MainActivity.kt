@@ -5,10 +5,14 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.ArrayAdapter
+import android.widget.ListView
 
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var listView:ListView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,6 +23,14 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, Partie::class.java).apply {}
             startActivity(intent)
         }
+
+        listView = findViewById(R.id.parties_list)
+        val listItems = arrayOfNulls<String>(24)
+        for (i in 0 until 24) {
+            listItems[i] = "Partie"+i
+        }
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems)
+        listView.adapter = adapter
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
