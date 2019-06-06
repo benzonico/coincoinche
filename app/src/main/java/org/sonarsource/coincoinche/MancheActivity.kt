@@ -1,5 +1,6 @@
 package org.sonarsource.coincoinche
 
+import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -12,11 +13,70 @@ import java.lang.NumberFormatException
 
 class MancheActivity : AppCompatActivity() {
 
+    var coincheMultiplier = 1
+
+    private fun computeScores() {
+        if (!euxButton.isChecked && !nousButton.isChecked) return
+        if (contractBar.progress == 0) return
+        if (euxScore.text.toString() == "0" && nousScore.text.toString() == "0") return
+
+        val nousContract = nousButton.isChecked
+        var contract = (70 + contractBar.progress * 10)
+        val isCapot = contract == 190
+        if(isCapot) {
+           contract = 250
+        }
+        contract *= coincheMultiplier
+
+        var nousScoreValue = 0
+        try {
+            nousScoreValue = nousScore.text.toString().toInt()
+        } catch (e: NumberFormatException) {
+            return
+        }
+
+        val euxScoreValue = 162 - nousScoreValue
+
+        var nousTotalValue: Int
+        var euxTotalValue: Int
+
+        if (nousContract) {
+            if (nousScoreValue >= contract) {
+                // Partie faite => à arrondir
+                nousTotalValue = contract + round(nousScoreValue)
+                euxTotalValue = round(euxScoreValue)
+            } else {
+                // nous sommes dedans
+                nousTotalValue = 0
+                euxTotalValue = round(162) + contract
+            }
+        } else {
+            if (euxScoreValue >= contract) {
+                // Partie faite => à arrondir
+                euxTotalValue = contract + round(euxScoreValue)
+                nousTotalValue = round(nousScoreValue)
+            } else {
+                // eux sont dedans
+                euxTotalValue = 0
+                nousTotalValue = round(162) + contract
+            }
+        }
+
+        // Belote
+
+        // 0 sans être capot ?
+        // Partir en étant capot ? (capot inversé)
+
+    }
+
+    private fun round(scoreValue: Int): Int {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_manche)
 
-        var coincheMultiplier = 1
         euxScore.text = "0".toEditable()
         nousScore.text = "0".toEditable()
         euxTotal.text = "0"
@@ -25,32 +85,43 @@ class MancheActivity : AppCompatActivity() {
         euxButton.setOnClickListener { view ->
             euxButton.isChecked = true
             nousButton.isChecked = false
+            computeScores()
         }
         nousButton.setOnClickListener { view ->
             euxButton.isChecked = false
             nousButton.isChecked = true
+            computeScores()
         }
         euxButton2.setOnClickListener { view ->
             nousButton2.isChecked = false
+            computeScores()
         }
         nousButton2.setOnClickListener { view ->
             euxButton2.isChecked = false
+            computeScores()
         }
 
         coincheSans.setOnClickListener {view ->
             coincheAvec.isChecked = false
             coincheSurcoinche.isChecked = false
             coincheMultiplier = 1
+            computeScores()
         }
         coincheAvec.setOnClickListener { view ->
             coincheSans.isChecked = false
             coincheSurcoinche.isChecked = false
             coincheMultiplier = 2
+            computeScores()
         }
         coincheSurcoinche.setOnClickListener { view ->
             coincheSans.isChecked = false
             coincheAvec.isChecked = false
             coincheMultiplier = 4
+            computeScores()
+        }
+
+        fab.setOnClickListener { view ->
+            println("scores !")
         }
 
         contractBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
@@ -127,6 +198,7 @@ class MancheActivity : AppCompatActivity() {
             }
 
         })
+
 
 
         // TODO à la fin de la partie
