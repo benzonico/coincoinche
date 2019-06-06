@@ -25,11 +25,19 @@ class MainActivity : AppCompatActivity() {
         }
 
         listView = findViewById(R.id.parties_list)
-        val listItems = arrayOfNulls<String>(24)
+//        val listItems = arrayOfNulls<String>(24)
+//        for (i in 0 until 24) {
+//            listItems[i] = "Partie"+i
+//        }
+        val games = ArrayList<Game>()
         for (i in 0 until 24) {
-            listItems[i] = "Partie"+i
+            val myGame = Game()
+            myGame.eux = i*10
+            myGame.nous =  i*100
+            games.add(myGame)
         }
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems)
+        val adapter = PartiesListAdapter(this, games)
+//        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems)
         listView.adapter = adapter
     }
 
