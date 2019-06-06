@@ -8,23 +8,26 @@
         tools:context=".MancheActivity" android:orientation="vertical">
 
     <RelativeLayout android:orientation="horizontal"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:padding="10dp">
-        <android.support.design.button.MaterialButton android:layout_width="120dp"
-                                                      android:layout_height="wrap_content"
-                                                      android:text="@string/nous"
-                                                      android:layout_alignParentLeft="true"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+        <ToggleButton android:layout_width="120dp"
+                      android:layout_height="wrap_content"
+                      android:textOff="@string/nous"
+                      android:textOn="@string/nous"
+                      android:layout_alignParentLeft="true"
+                      android:id="@+id/nousButton"/>
         <TextView android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:text="@string/preneur"
                   android:gravity="center"
                   android:layout_centerInParent="true"
         />
-        <android.support.design.button.MaterialButton android:layout_width="120dp"
-                                                      android:layout_height="wrap_content"
-                                                      android:text="@string/eux"
-                                                      android:layout_alignParentRight="true"
-                                                      android:id="@+id/materialButton"/>
+        <ToggleButton android:layout_width="120dp"
+                      android:layout_height="wrap_content"
+                      android:textOff="@string/eux"
+                      android:textOn="@string/eux"
+                      android:layout_alignParentRight="true"
+                      android:id="@+id/euxButton"/>
     </RelativeLayout>
 </LinearLayout>
