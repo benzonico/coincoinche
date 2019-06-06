@@ -90,8 +90,10 @@ class MainActivity : AppCompatActivity() {
         val mygame = data?.getParcelableExtra<Game>("Game")
         if(mygame != null) {
             if (!games.isEmpty()) {
-                val first = games.filter { g -> g.date == mygame.date }.first()
-                games.remove(first)
+                val first = games.filter { g -> g.date == mygame.date }.firstOrNull()
+                if (first != null) {
+                    games.remove(first)
+                }
             }
             games.add(0, mygame)
             adapter.notifyDataSetChanged()
