@@ -55,7 +55,14 @@ class MancheActivity : AppCompatActivity() {
 
         if (nousContract) {
             // si score 80 la partie est perdu (l'adversaire à 82)
-            if (nousScoreValue > 80 && nousScoreValue >= contract) {
+            var nousScoreTot = 0
+            if(nousBelote.isChecked){
+                nousScoreTot = nousScoreValue + 20
+            }
+            else{
+                nousScoreTot = nousScoreValue
+            }
+            if (nousScoreValue > 80 && nousScoreTot >= contract) {
                 // Partie faite => à arrondir
                 nousTotalValue = contractValue + round(nousScoreValue)
                 euxTotalValue = if (coincheMultiplier == 1) round(euxScoreValue) else 0
@@ -67,7 +74,14 @@ class MancheActivity : AppCompatActivity() {
             }
         } else {
             // si score 80 la partie est perdu (l'adversaire à 82)
-            if (euxScoreValue > 80 && euxScoreValue >= contract) {
+            var euxScoreTot = 0;
+            if(euxBelote.isChecked){
+                euxScoreTot = euxScoreValue + 20
+            }
+            else{
+                euxScoreTot = euxScoreValue
+            }
+            if (euxScoreValue > 80 && euxScoreTot >= contract) {
                 // Partie faite => à arrondir
                 euxTotalValue = contractValue + round(euxScoreValue)
                 nousTotalValue = if (coincheMultiplier == 1) round(nousScoreValue) else 0
