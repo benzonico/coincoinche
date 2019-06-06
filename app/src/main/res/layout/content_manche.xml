@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MancheActivity" android:orientation="vertical">
+
+    <!-- Preneur -->
+    <RelativeLayout android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+        <ToggleButton android:layout_width="120dp"
+                      android:layout_height="wrap_content"
+                      android:textOff="@string/nous"
+                      android:textOn="@string/nous"
+                      android:layout_alignParentLeft="true"
+                      android:id="@+id/nousButton"/>
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="@string/preneur"
+                  android:gravity="center"
+                  android:layout_centerInParent="true"
+        />
+        <ToggleButton android:layout_width="120dp"
+                      android:layout_height="wrap_content"
+                      android:textOff="@string/eux"
+                      android:textOn="@string/eux"
+                      android:layout_alignParentRight="true"
+                      android:id="@+id/euxButton"/>
+    </RelativeLayout>
+    <!-- Contrat -->
+    <RelativeLayout android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+        <TextView android:layout_alignParentLeft="true"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/contractLabel" android:textSize="24sp"
+                  android:text="@string/contract"
+                  android:paddingBottom="30dp"/>
+        <TextView android:layout_centerInParent="true"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/contract" android:textSize="24sp" android:paddingBottom="30dp"/>
+        <SeekBar android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:max="12"
+                 android:layout_below="@id/contract"
+                 android:id="@+id/contractBar"
+        />
+
+    </RelativeLayout>
+    <!--Couleurs-->
+    <RelativeLayout android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+
+        <ToggleButton android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/couleur_coeur"
+                      android:textOff="@string/couleur_coeur"
+                      android:textOn="@string/couleur_coeur"
+                      android:textAlignment="center"/>
+
+        <ToggleButton android:layout_toRightOf="@+id/couleur_coeur"
+                      android:layout_toEndOf="@+id/couleur_coeur"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/couleur_pique"
+                      android:textOff="@string/couleur_pique"
+                      android:textOn="@string/couleur_pique"
+                      android:textAlignment="center"
+                      android:layout_centerInParent="true"
+        />
+
+        <ToggleButton android:layout_toRightOf="@+id/couleur_pique"
+                      android:layout_toEndOf="@+id/couleur_pique"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/couleur_carreau"
+                      android:textOff="@string/couleur_carreau"
+                      android:textOn="@string/couleur_carreau"
+                      android:textAlignment="center"
+        />
+
+        <ToggleButton android:layout_toRightOf="@+id/couleur_carreau"
+                      android:layout_toEndOf="@+id/couleur_carreau"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/couleur_trefle"
+                      android:textOff="@string/couleur_trefle"
+                      android:textOn="@string/couleur_trefle"
+                      android:textAlignment="center"
+        />
+
+    </RelativeLayout>
+    <!--Coinche-->
+    <RelativeLayout android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+        <TextView android:layout_alignParentLeft="true"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/coincheLabel" android:textSize="24sp"
+                  android:text="@string/coinche"/>
+    </RelativeLayout>
+
+    <RelativeLayout android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+        <ToggleButton android:layout_alignParentLeft="true"
+                      android:layout_width="120dp"
+                      android:layout_height="wrap_content"
+                      android:textOff="@string/coincheSans"
+                      android:textOn="@string/coincheSans"
+                      android:id="@+id/coincheSans" android:checked="true"/>
+
+        <ToggleButton android:layout_centerInParent="true"
+                      android:layout_width="120dp"
+                      android:layout_height="wrap_content"
+                      android:textOff="@string/coincheAvec"
+                      android:textOn="@string/coincheAvec"
+                      android:id="@+id/coincheAvec"/>
+
+        <ToggleButton android:layout_alignParentRight="true"
+                      android:layout_width="120dp"
+                      android:layout_height="wrap_content"
+                      android:textOff="@string/coincheSurcoinche"
+                      android:textOn="@string/coincheSurcoinche"
+                      android:id="@+id/coincheSurcoinche" android:layout_marginLeft="156dp"/>
+    </RelativeLayout>
+
+    <!-- score -->
+    <RelativeLayout android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="@string/score"
+                  android:textSize="24sp"
+                  android:gravity="center"
+                  android:layout_alignParentLeft="true"
+        />
+        <EditText android:inputType="number" android:layout_width="120dp"
+                  android:layout_height="wrap_content"
+                  android:gravity="center"
+                  android:layout_centerInParent="true"
+                  android:id="@+id/nousScore"/>
+
+        <EditText android:inputType="number" android:layout_width="120dp"
+                  android:layout_height="wrap_content"
+                  android:gravity="center"
+                  android:layout_centerVertical="true"
+                  android:layout_alignParentRight="true"
+                  android:id="@+id/euxScore"/>
+    </RelativeLayout>
+    <RelativeLayout android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+        <SeekBar android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:max="164"
+                 android:id="@+id/score_slider"
+                 android:paddingBottom="20dp" android:scrollbarSize="10dp"/>
+    </RelativeLayout>
+    <!-- Belote -->
+    <RelativeLayout android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+        <ToggleButton android:layout_width="120dp"
+                      android:layout_height="wrap_content"
+                      android:textOff="@string/nous"
+                      android:textOn="@string/nous"
+                      android:layout_alignParentLeft="true"
+                      android:id="@+id/nousBelote"/>
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="@string/Belote"
+                  android:gravity="center"
+                  android:layout_centerInParent="true"
+        />
+        <ToggleButton android:layout_width="120dp"
+                      android:layout_height="wrap_content"
+                      android:textOff="@string/eux"
+                      android:textOn="@string/eux"
+                      android:layout_alignParentRight="true"
+                      android:id="@+id/euxBelote"/>
+    </RelativeLayout>
+    <!-- Total -->
+    <RelativeLayout android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+        <TextView android:layout_width="120dp"
+                  android:layout_height="wrap_content"
+                  android:gravity="center"
+                  android:layout_alignParentLeft="true"
+                  android:id="@+id/nousTotal"/>
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="@string/total"
+                  android:gravity="center"
+                  android:layout_centerInParent="true"
+        />
+        <TextView android:layout_width="120dp"
+                  android:layout_height="wrap_content"
+                  android:textOff="@string/eux"
+                  android:gravity="center"
+                  android:textOn="@string/eux"
+                  android:layout_alignParentRight="true"
+                  android:id="@+id/euxTotal"/>
+    </RelativeLayout>
+
+</LinearLayout>

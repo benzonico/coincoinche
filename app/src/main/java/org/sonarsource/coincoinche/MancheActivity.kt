@@ -1,6 +1,5 @@
 package org.sonarsource.coincoinche
 
-import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -10,7 +9,6 @@ import android.widget.SeekBar
 import kotlinx.android.synthetic.main.activity_manche.*
 import java.lang.NumberFormatException
 import kotlin.math.max
-import android.R.id.message
 import android.content.Intent
 
 
