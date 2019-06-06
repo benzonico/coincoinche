@@ -28,7 +28,6 @@ class MancheActivity : AppCompatActivity() {
         }
         contractBar.setOnSeekBarChangeListener (object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
-                val progress = contractBar.progress
                 if (progress == 0) {
                     contract.text = ""
                 } else if (progress == contractBar.max) {
