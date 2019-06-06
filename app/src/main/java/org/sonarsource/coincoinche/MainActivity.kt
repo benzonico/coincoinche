@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var listView: ListView
     private var game: Game? = null
-    private var adapter: PartiesListAdapter? = null
+    private lateinit var adapter: PartiesListAdapter
     var games = ArrayList<Game>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -92,8 +92,12 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         val mygame = data?.getParcelableExtra<Game>("Game")
         if(mygame != null) {
+            if (!games.isEmpty()) {
+                val first = games.filter { g -> g.date == mygame.date }.first()
+                games.remove(first)
+            }
             games.add(mygame)
-            adapter?.notifyDataSetChanged()
+            adapter.notifyDataSetChanged()
         }
     }
 }
