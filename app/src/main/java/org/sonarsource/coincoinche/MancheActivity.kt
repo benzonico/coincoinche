@@ -42,7 +42,8 @@ class MancheActivity : AppCompatActivity() {
         var euxTotalValue: Int
 
         if (nousContract) {
-            if (nousScoreValue >= contract) {
+            // si score 80 la partie est perdu (l'adversaire à 82)
+            if (nousScoreValue > 80 && nousScoreValue >= contract) {
                 // Partie faite => à arrondir
                 nousTotalValue = contractValue + round(nousScoreValue)
                 euxTotalValue = if (coincheMultiplier == 1) round(euxScoreValue) else 0
@@ -52,7 +53,8 @@ class MancheActivity : AppCompatActivity() {
                 euxTotalValue = round(162) + contractValue
             }
         } else {
-            if (euxScoreValue >= contract) {
+            // si score 80 la partie est perdu (l'adversaire à 82)
+            if (euxScoreValue > 80 && euxScoreValue >= contract) {
                 // Partie faite => à arrondir
                 euxTotalValue = contractValue + round(euxScoreValue)
                 nousTotalValue = if (coincheMultiplier == 1) round(nousScoreValue) else 0
@@ -64,7 +66,12 @@ class MancheActivity : AppCompatActivity() {
         }
 
         // Belote
-
+        if (nousBelote.isChecked) {
+            nousTotalValue += 20
+        }
+        if (euxBelote.isChecked) {
+            euxTotalValue += 20
+        }
         // 0 sans être capot ?
         // Partir en étant capot ? (capot inversé)
 
@@ -101,12 +108,12 @@ class MancheActivity : AppCompatActivity() {
             nousButton.isChecked = true
             computeScores()
         }
-        euxButton2.setOnClickListener { view ->
-            nousButton2.isChecked = false
+        euxBelote.setOnClickListener { view ->
+            nousBelote.isChecked = false
             computeScores()
         }
-        nousButton2.setOnClickListener { view ->
-            euxButton2.isChecked = false
+        nousBelote.setOnClickListener { view ->
+            euxBelote.isChecked = false
             computeScores()
         }
 
