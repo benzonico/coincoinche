@@ -183,8 +183,8 @@ class MancheActivity : AppCompatActivity() {
         }
         fab.setOnClickListener { view ->
             val manche = Manche()
-            manche.eux = 42
-            manche.nous = 120
+            manche.eux = euxTotal.text.toString().toInt()
+            manche.nous = nousTotal.text.toString().toInt()
             val intent = Intent()
             intent.putExtra("Manche", manche)
             setResult(0, intent)
