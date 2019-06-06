@@ -55,6 +55,14 @@ class PartieActivity : AppCompatActivity() {
 
     }
 
+    override fun onBackPressed() {
+        val intent = Intent()
+        intent.putExtra("Game", game)
+        setResult(0, intent)
+        println("##############################")
+        super.onBackPressed()
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         val manche = data?.getParcelableExtra<Manche>("Manche")

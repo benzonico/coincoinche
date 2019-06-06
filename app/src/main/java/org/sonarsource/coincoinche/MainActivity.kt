@@ -16,6 +16,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     private lateinit var listView: ListView
+    private var game: Game? = null
+    private var adapter: PartiesListAdapter? = null
+    var games = ArrayList<Game>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
         val userId = id(this)
 
-
+        game = intent.getParcelableExtra<Game>("Game")
         fab.setOnClickListener { view ->
             val intent = Intent(this, PartieActivity::class.java).apply {}
             val myGame = Game()
@@ -36,20 +39,19 @@ class MainActivity : AppCompatActivity() {
                 myGame.manches.add(myManche)
             }*/
             intent.putExtra("Game", myGame)
-            startActivity(intent)
+            startActivityForResult(intent, 0)
 
         }
 
         listView = findViewById(R.id.parties_list)
-        val games = ArrayList<Game>()
-//        for (i in 0 until 24) {
-//            val myGame = Game()
-//            myGame.eux = i * 10
-//            myGame.nous = i * 100
-//            games.add(myGame)
-//        }
+        listView.setOnItemClickListener{ parent, view, position, id ->
+            val intent = Intent(this, PartieActivity::class.java).apply {}
+            intent.putExtra("Game", game)
+            startActivityForResult(intent, 0)
+        }
 
-        val adapter = PartiesListAdapter(this, games)
+
+        adapter = PartiesListAdapter(this, games)
         listView.adapter = adapter
 
 //        val leThis = this
@@ -90,6 +92,16 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        val mygame = data?.getParcelableExtra<Game>("Game")
+        println(mygame)
+        if(mygame != null) {
+            games.add(mygame)
+            adapter?.notifyDataSetChanged()
         }
     }
 }
