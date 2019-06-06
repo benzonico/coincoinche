@@ -1,22 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent">
-    <ImageView
-            android:id="@+id/icon"
-            android:layout_width="22dp"
-            android:layout_height="22dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="4dp"
-            android:src="@drawable/ic_launcher_foreground" >
-    </ImageView>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp"
+                android:paddingRight="10dp"
+                android:layout_centerVertical="true"
+>
 
-    <TextView
-            android:id="@+id/label"
+
+    <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@+id/label"
-            android:textSize="20dp" >
-    </TextView>
-</LinearLayout>
+            android:layout_height="wrap_content" android:id="@+id/imageGameEux"
+            android:layout_alignParentLeft="true"
+            android:paddingRight="40dp"
+            app:srcCompat="@mipmap/ic_launcher"
+    />
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/imageGameNous"
+            android:layout_alignParentRight="true"
+            android:paddingLeft="40dp"
+            app:srcCompat="@mipmap/ic_launcher_round"
+    />
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/hyphen"
+            android:layout_centerHorizontal="true"
+
+
+    />
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/labelEux"
+            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@id/imageGameEux"
+    />
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/labelNous"
+            android:layout_centerHorizontal="true"
+            android:layout_toLeftOf="@id/imageGameNous"
+    />
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/scoreEux"
+            android:layout_toRightOf="@id/hyphen"
+    />
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/scoreNous"
+
+            android:layout_toLeftOf="@id/hyphen"
+    />
+
+
+</RelativeLayout>
