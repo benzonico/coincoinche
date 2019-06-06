@@ -29,20 +29,10 @@ class PartieActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        /*listView = findViewById(R.id.parties_list)
-        val listItems = arrayOfNulls<String>(24)
-        for (i in 0 until 24) {
-            listItems[i] = "PartieActivity"+i
-        }
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems)
-        listView.adapter = adapter*/
-
-
         EuxLabel = findViewById(R.id.labelWholeMancheEux)
         EuxLabel.text = "Eux"
         NousLabel = findViewById(R.id.labelWholeMancheNous)
         NousLabel.text = "Nous"
-
 
 
         listView = findViewById(R.id.manches_list)
@@ -60,11 +50,11 @@ class PartieActivity : AppCompatActivity() {
         val adapter = MancheListAdapter(this, manches)
         listView.adapter = adapter
 
+        //A revoir quand le stockage des scores sera fait.
         EuxScore = findViewById(R.id.scoreWholeMancheEux)
         EuxScore.text = Scoreeux.toString()
         NousScore = findViewById(R.id.scoreWholeMancheNous)
         NousScore.text = Scorenous.toString()
-
 
     }
 }
