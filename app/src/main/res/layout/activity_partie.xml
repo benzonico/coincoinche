@@ -7,9 +7,6 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-
-
-
     <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
@@ -20,8 +17,5 @@
     <include layout="@layout/manches_score_bar" android:layout_height="50dp" android:layout_width="match_parent" android:id="@+id/scorebar"/>
     <include layout="@layout/content_parties" android:layout_height="wrap_content" android:layout_width="match_parent"
              android:visibility="visible" android:layout_marginTop="30dp"/>
-
-
-
 
 </android.support.design.widget.CoordinatorLayout>

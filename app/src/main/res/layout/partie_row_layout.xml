@@ -18,46 +18,54 @@
     <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageMancheEux"
+            android:id="@+id/imageMancheNous"
             android:layout_alignParentLeft="true"
             android:paddingRight="40dp"
-            app:srcCompat="@mipmap/ic_launcher"/>
+            app:srcCompat="@android:drawable/star_big_on"/>
 
-    <ImageView
+    <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageMancheNous"
-            android:layout_alignParentRight="true"
-            android:paddingLeft="40dp"
-            app:srcCompat="@mipmap/ic_launcher"/>
+            android:layout_height="wrap_content" android:id="@+id/labelMancheNous"
+            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@id/imageMancheNous"
+    />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/scoreMancheNous"
+
+            android:layout_toLeftOf="@id/hyphen"
+    />
+
 
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/hyphen"
             android:layout_centerHorizontal="true"
     />
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageMancheEux"
+            android:layout_alignParentRight="true"
+            android:paddingLeft="40dp"
+            app:srcCompat="@android:drawable/star_big_on"/>
+
+
+
+
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/labelMancheEux"
             android:layout_centerHorizontal="true"
-            android:layout_toRightOf="@id/imageMancheEux"
+            android:layout_toLeftOf="@id/imageMancheEux"
     />
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/labelMancheNous"
-            android:layout_centerHorizontal="true"
-            android:layout_toLeftOf="@id/imageMancheNous"
-    />
+
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/scoreMancheEux"
             android:layout_toRightOf="@id/hyphen"
-    />
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/scoreMancheNous"
-
-            android:layout_toLeftOf="@id/hyphen"
     />
 
 
