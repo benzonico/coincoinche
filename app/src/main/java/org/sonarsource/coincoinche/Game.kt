@@ -4,7 +4,6 @@ import android.os.Parcel
 import android.os.Parcelable
 import java.util.*
 import kotlin.collections.ArrayList
-import java.time.LocalDateTime
 
 class Game() : Parcelable {
     var eux = 0
@@ -16,7 +15,6 @@ class Game() : Parcelable {
         eux = parcel.readInt()
         nous = parcel.readInt()
         date = parcel.readLong()
-       // manches = parcel.readArrayList(Manche::class.java.classLoader)
         manches = parcel.readArrayList(Manche.javaClass.classLoader) as ArrayList<Manche>
     }
 
