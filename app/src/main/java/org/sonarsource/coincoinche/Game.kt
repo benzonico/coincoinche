@@ -36,6 +36,11 @@ class Game() : Parcelable {
         manches.add(manche)
     }
 
+    fun updateScore() {
+        eux = manches.map { m -> m.eux }.sum();
+        nous = manches.map { m -> m.nous }.sum();
+    }
+
     companion object CREATOR : Parcelable.Creator<Game> {
         override fun createFromParcel(parcel: Parcel): Game {
             return Game(parcel)

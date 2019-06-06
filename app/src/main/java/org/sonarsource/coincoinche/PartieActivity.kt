@@ -37,17 +37,15 @@ class PartieActivity : AppCompatActivity() {
 
         adapter = MancheListAdapter(this, game.manches)
         listView.adapter = adapter
-
-
-
         updateGameScore()
     }
 
     private fun updateGameScore() {
+        game.updateScore()
         EuxScore = findViewById(R.id.scoreWholeMancheEux)
-        EuxScore.text = game.manches.map { m -> m.eux }.sum().toString()
+        EuxScore.text = game.eux.toString()
         NousScore = findViewById(R.id.scoreWholeMancheNous)
-        NousScore.text = game.manches.map { m -> m.nous }.sum().toString()
+        NousScore.text = game.nous.toString()
     }
 
     override fun onBackPressed() {

@@ -27,8 +27,8 @@ class PartiesListAdapter(private val context: Context, private val dataSource: L
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         // Get view for row item
         val rowView = inflater.inflate(R.layout.game_row_layout, parent, false)
-        rowView.scoreEux.text = ""+dataSource[position].eux
-        rowView.scoreNous.text = ""+dataSource[position].nous
+        rowView.scoreEux.text = dataSource[position].eux.toString()
+        rowView.scoreNous.text = dataSource[position].nous.toString()
         rowView.hyphen.text = " - "
         rowView.labelEux.text = "Eux"
         rowView.labelNous.text = "Nous"

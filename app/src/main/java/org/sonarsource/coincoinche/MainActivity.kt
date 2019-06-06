@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ListView
-import android.support.design.widget.FloatingActionButton
 /*import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener*/
@@ -29,21 +28,13 @@ class MainActivity : AppCompatActivity() {
 
         game = intent.getParcelableExtra<Game>("Game")
         fab.setOnClickListener { view ->
-            val intent = Intent(this, PartieActivity::class.java).apply {}
-            val myGame = Game()
-            intent.putExtra("Game", myGame)
-            startActivityForResult(intent, 0)
-
+            startPartieActivity(Game())
         }
 
         listView = findViewById(R.id.parties_list)
-        listView.setOnItemClickListener{ parent, view, position, id ->
-            val intent = Intent(this, PartieActivity::class.java).apply {}
-            intent.putExtra("Game", games.get(position))
-            startActivityForResult(intent, 0)
+        listView.setOnItemClickListener { parent, view, position, id ->
+            startPartieActivity(games.get(position))
         }
-
-
         adapter = PartiesListAdapter(this, games)
         listView.adapter = adapter
 
@@ -66,6 +57,12 @@ class MainActivity : AppCompatActivity() {
 //                // Failed to read value
 //            }
 //        })
+    }
+
+    private fun startPartieActivity(game: Game) {
+        val intent = Intent(this, PartieActivity::class.java).apply {}
+        intent.putExtra("Game", game)
+        startActivityForResult(intent, 0)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -96,7 +93,7 @@ class MainActivity : AppCompatActivity() {
                 val first = games.filter { g -> g.date == mygame.date }.first()
                 games.remove(first)
             }
-            games.add(mygame)
+            games.add(0, mygame)
             adapter.notifyDataSetChanged()
         }
     }
