@@ -6,6 +6,10 @@
     <string name="preneur">Preneur</string>
     <string name="Belote">Belote</string>
     <string name="contract">Contrat</string>
+    <string name="coinche">Coinche</string>
+    <string name="coincheSans">Sans</string>
+    <string name="coincheAvec">Coinché</string>
+    <string name="coincheSurcoinche">Surcoinché</string>
     <string name="total">Total</string>
 
 </resources>

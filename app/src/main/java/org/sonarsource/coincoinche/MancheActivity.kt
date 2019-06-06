@@ -10,8 +10,11 @@ class MancheActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_manche)
+
+        var coincheMultiplier = 1
         euxScore.text = "0"
         nousScore.text = "0"
+
         euxButton.setOnClickListener { view ->
             euxButton.isChecked = true
             nousButton.isChecked = false
@@ -26,7 +29,24 @@ class MancheActivity : AppCompatActivity() {
         nousButton2.setOnClickListener { view ->
             euxButton2.isChecked = false
         }
-        contractBar.setOnSeekBarChangeListener (object : SeekBar.OnSeekBarChangeListener {
+
+        coincheSans.setOnClickListener {view ->
+            coincheAvec.isChecked = false;
+            coincheSurcoinche.isChecked = false;
+            coincheMultiplier = 1
+        }
+        coincheAvec.setOnClickListener { view ->
+            coincheSans.isChecked = false;
+            coincheSurcoinche.isChecked = false;
+            coincheMultiplier = 2
+        }
+        coincheSurcoinche.setOnClickListener { view ->
+            coincheSans.isChecked = false;
+            coincheAvec.isChecked = false;
+            coincheMultiplier = 4
+        }
+
+        contractBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                 if (progress == 0) {
                     contract.text = ""

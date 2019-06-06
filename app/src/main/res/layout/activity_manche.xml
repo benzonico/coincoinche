@@ -52,8 +52,46 @@
                  android:layout_below="@id/contract"
                  android:id="@+id/contractBar"
         />
+
     </RelativeLayout>
     <!--Coinche-->
+    <RelativeLayout android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+        <TextView android:layout_alignParentLeft="true"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/coincheLabel" android:textSize="24sp"
+                  android:text="@string/coinche" />
+    </RelativeLayout>
+
+    <RelativeLayout android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+        <ToggleButton android:layout_alignParentLeft="true"
+                      android:layout_width="120dp"
+                      android:layout_height="wrap_content"
+                      android:textOff="@string/coincheSans"
+                      android:textOn="@string/coincheSans"
+                      android:id="@+id/coincheSans" android:checked="true"/>
+
+        <ToggleButton android:layout_centerInParent="true"
+                      android:layout_width="120dp"
+                      android:layout_height="wrap_content"
+                      android:textOff="@string/coincheAvec"
+                      android:textOn="@string/coincheAvec"
+                      android:id="@+id/coincheAvec"/>
+
+        <ToggleButton android:layout_alignParentRight="true"
+                      android:layout_width="120dp"
+                      android:layout_height="wrap_content"
+                      android:textOff="@string/coincheSurcoinche"
+                      android:textOn="@string/coincheSurcoinche"
+                      android:id="@+id/coincheSurcoinche" android:layout_marginLeft="156dp"/>
+    </RelativeLayout>
 
     <!-- Belote -->
     <RelativeLayout android:orientation="horizontal"
