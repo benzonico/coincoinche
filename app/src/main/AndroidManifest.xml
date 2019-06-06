@@ -15,6 +15,8 @@
         </activity>
         <activity android:name=".PartieActivity">
         </activity>
+        <activity android:name=".SettingsActivity">
+        </activity>
         <activity
                 android:name=".MainActivity"
                 android:label="@string/app_name"

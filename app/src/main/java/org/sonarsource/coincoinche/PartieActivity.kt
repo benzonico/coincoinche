@@ -11,7 +11,6 @@ class PartieActivity : AppCompatActivity() {
 
     private lateinit var listView: ListView
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_partie)
