@@ -9,7 +9,6 @@
 
 
 
-    <include layout="@layout/content_parties"/>
 
     <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"
@@ -18,5 +17,11 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin"
             app:srcCompat="@drawable/ic_add_white_24dp"/>
+    <include layout="@layout/manches_score_bar" android:layout_height="50dp" android:layout_width="match_parent" android:id="@+id/scorebar"/>
+    <include layout="@layout/content_parties" android:layout_height="wrap_content" android:layout_width="match_parent"
+             android:visibility="visible" android:layout_marginTop="30dp"/>
+
+
+
 
 </android.support.design.widget.CoordinatorLayout>

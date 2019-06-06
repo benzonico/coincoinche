@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import kotlinx.android.synthetic.main.partie_row_layout.view.*
+import kotlinx.android.synthetic.main.activity_partie.*
+import kotlinx.android.synthetic.main.activity_partie.view.*
+import kotlinx.android.synthetic.main.partie_row_layout.view.hyphen
 
 class MancheListAdapter(private val context: Context, private val dataSource: List<Manche>) : BaseAdapter() {
 

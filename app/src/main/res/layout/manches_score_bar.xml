@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+                                             android:layout_height="match_parent">
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="411dp"
+            android:id="@+id/wholescore"
+            android:layout_height="42dp" android:background="#00EEEAEA"
+            tools:layout_editor_absoluteX="0dp">
+
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/labelWholeMancheNous"
+                android:layout_centerHorizontal="true"
+                android:layout_toLeftOf="@id/imageMancheNous"
+                android:paddingRight="0dp"
+                android:paddingLeft="30dp"
+                android:layout_alignParentLeft="true"
+                android:width="95dp" android:textSize="18sp" android:text="@string/nous"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/scoreWholeMancheNous"
+                android:layout_toLeftOf="@id/hyphen"
+                android:width="100dp" android:textSize="18sp" android:paddingLeft="40dp"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/scoreWholeMancheEux"
+                android:layout_toRightOf="@id/hyphen"
+                android:width="100dp" android:textSize="18sp" android:paddingLeft="40dp"/>
+        <TextView
+                android:layout_width="124dp"
+                android:layout_height="wrap_content" android:id="@+id/labelWholeMancheEux"
+                android:layout_centerHorizontal="true"
+                android:layout_toRightOf="@id/imageMancheEux"
+                android:paddingRight="0dp"
+                android:paddingLeft="60dp"
+                android:layout_alignParentRight="true"
+                android:width="95dp" android:textSize="18sp" android:text="@string/eux"/>
+
+
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>

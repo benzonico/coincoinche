@@ -4,12 +4,20 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import android.widget.LinearLayout
 import android.widget.ListView
+import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class PartieActivity : AppCompatActivity() {
 
     private lateinit var listView: ListView
+    private lateinit var EuxLabel: TextView
+    private lateinit var NousLabel: TextView
+    private lateinit var EuxScore: TextView
+    private lateinit var NousScore: TextView
+    private var Scoreeux: Int = 0
+    private var Scorenous: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +38,13 @@ class PartieActivity : AppCompatActivity() {
         listView.adapter = adapter*/
 
 
+        EuxLabel = findViewById(R.id.labelWholeMancheEux)
+        EuxLabel.text = "Eux"
+        NousLabel = findViewById(R.id.labelWholeMancheNous)
+        NousLabel.text = "Nous"
+
+
+
         listView = findViewById(R.id.manches_list)
         val manches = ArrayList<Manche>()
         for (i in 0 until 24) {
@@ -37,10 +52,19 @@ class PartieActivity : AppCompatActivity() {
             myManche.eux = i * 1
             myManche.nous = i * 10
             manches.add(myManche)
+            Scoreeux += myManche.eux
+            Scorenous += myManche.nous
+
         }
 
         val adapter = MancheListAdapter(this, manches)
         listView.adapter = adapter
+
+        EuxScore = findViewById(R.id.scoreWholeMancheEux)
+        EuxScore.text = Scoreeux.toString()
+        NousScore = findViewById(R.id.scoreWholeMancheNous)
+        NousScore.text = Scorenous.toString()
+
 
     }
 }
