@@ -124,7 +124,7 @@
                     android:padding="10dp">
         <SeekBar android:layout_width="match_parent"
                  android:layout_height="wrap_content"
-                 android:max="162"
+                 android:max="164"
                  android:id="@+id/score_slider"
                  android:paddingBottom="20dp" android:scrollbarSize="10dp"/>
     </RelativeLayout>

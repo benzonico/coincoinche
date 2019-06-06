@@ -8,6 +8,7 @@ import android.widget.EditText
 import android.widget.SeekBar
 import kotlinx.android.synthetic.main.activity_manche.*
 import java.lang.NumberFormatException
+import kotlin.math.max
 
 class MancheActivity : AppCompatActivity() {
 
@@ -28,13 +29,22 @@ class MancheActivity : AppCompatActivity() {
         contractValue *= coincheMultiplier
 
         var nousScoreValue = 0
+        var euxScoreValue = 0
         try {
             nousScoreValue = nousScore.text.toString().toInt()
         } catch (e: NumberFormatException) {
-            return
+            // Capot!
+            nousScoreValue = 250
+            euxScoreValue = 0
+        }
+        try {
+            euxScoreValue = euxScore.text.toString().toInt()
+        } catch (e: NumberFormatException) {
+            // Capot!
+            nousScoreValue = 0
+            euxScoreValue = 250
         }
 
-        val euxScoreValue = 162 - nousScoreValue
 
         var nousTotalValue: Int
         var euxTotalValue: Int
@@ -48,7 +58,8 @@ class MancheActivity : AppCompatActivity() {
             } else {
                 // nous sommes dedans
                 nousTotalValue = 0
-                euxTotalValue = round(162) + contractValue
+                // max pour gèrer le cas du capot inversé
+                euxTotalValue = round(max(euxScoreValue,162)) + contractValue
             }
         } else {
             // si score 80 la partie est perdu (l'adversaire à 82)
@@ -59,7 +70,8 @@ class MancheActivity : AppCompatActivity() {
             } else {
                 // eux sont dedans
                 euxTotalValue = 0
-                nousTotalValue = round(162) + contractValue
+                // max pour gèrer le cas du capot inversé
+                nousTotalValue = round(max(nousScoreValue,162)) + contractValue
             }
         }
 
@@ -183,12 +195,16 @@ class MancheActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable) {
                 try {
                     val intScore = s.toString().toInt()
-                    euxScore.placeCursorToEnd()
-                    if (intScore != 162 - score_slider.progress) {
-                        score_slider.progress = 162 - intScore
+                    if (intScore == 0 && score_slider.progress == 164) {
+                        euxScore.placeCursorToEnd()
+                        return
                     }
+                    if (intScore+1 != 164 - score_slider.progress) {
+                        score_slider.progress = 164 - (intScore+1)
+                    }
+                    euxScore.placeCursorToEnd()
                 } catch (e: NumberFormatException) {
-                    // do nothing
+                    score_slider.progress = 0
                 }
             }
 
@@ -203,12 +219,16 @@ class MancheActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable) {
                 try {
                     val intScore = s.toString().toInt()
-                    if (intScore != score_slider.progress) {
-                        score_slider.progress = intScore
+                    if (intScore == 0 && score_slider.progress == 0) {
+                        nousScore.placeCursorToEnd()
+                        return
+                    }
+                    if (intScore + 1 != score_slider.progress) {
+                        score_slider.progress = intScore +1
                     }
                     nousScore.placeCursorToEnd()
                 } catch (e: NumberFormatException) {
-                    // do nothing
+                    score_slider.progress = score_slider.max
                 }
             }
 
@@ -224,17 +244,18 @@ class MancheActivity : AppCompatActivity() {
     }
 
     private fun refreshScore() {
-        val nous_score = score_slider.progress// + score_unit.progress
-        val eux_score  = 162 - nous_score
+        val nous_score = score_slider.progress
+        println(nous_score)
         if (nous_score == 0) {
             euxScore.text = "Capot".toEditable()
             nousScore.text = "0".toEditable()
-        } else if (eux_score == 0) {
+        } else if (nous_score == 164) {
             nousScore.text = "Capot".toEditable()
             euxScore.text = "0".toEditable()
         } else {
-            euxScore.text = eux_score.toString().toEditable()
-            nousScore.text = nous_score.toString().toEditable()
+
+            nousScore.text = (nous_score - 1).toString().toEditable()
+            euxScore.text = (162 - (nous_score - 1)).toString().toEditable()
         }
         computeScores()
     }
