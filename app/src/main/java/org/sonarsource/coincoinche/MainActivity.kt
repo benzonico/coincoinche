@@ -31,13 +31,6 @@ class MainActivity : AppCompatActivity() {
         fab.setOnClickListener { view ->
             val intent = Intent(this, PartieActivity::class.java).apply {}
             val myGame = Game()
-            /*ArrayList<Manche>()
-            for (i in 0 until 24) {
-                val myManche = Manche()
-                myManche.eux = i * 1
-                myManche.nous = i * 10
-                myGame.manches.add(myManche)
-            }*/
             intent.putExtra("Game", myGame)
             startActivityForResult(intent, 0)
 
@@ -46,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         listView = findViewById(R.id.parties_list)
         listView.setOnItemClickListener{ parent, view, position, id ->
             val intent = Intent(this, PartieActivity::class.java).apply {}
-            intent.putExtra("Game", game)
+            intent.putExtra("Game", games.get(position))
             startActivityForResult(intent, 0)
         }
 

@@ -59,7 +59,6 @@ class PartieActivity : AppCompatActivity() {
         val intent = Intent()
         intent.putExtra("Game", game)
         setResult(0, intent)
-        println("##############################")
         super.onBackPressed()
     }
 
