@@ -105,13 +105,13 @@
                   android:gravity="center"
                   android:layout_alignParentLeft="true"
         />
-        <TextView android:layout_width="120dp"
+        <EditText android:inputType="number" android:layout_width="120dp"
                   android:layout_height="wrap_content"
                   android:gravity="center"
                   android:layout_centerInParent="true"
                   android:id="@+id/nousScore"/>
 
-        <TextView android:layout_width="120dp"
+        <EditText android:inputType="number" android:layout_width="120dp"
                   android:layout_height="wrap_content"
                   android:gravity="center"
                   android:layout_centerVertical="true"
@@ -125,13 +125,8 @@
         <SeekBar android:layout_width="match_parent"
                  android:layout_height="wrap_content"
                  android:max="162"
-                 android:id="@+id/score_diz"
+                 android:id="@+id/score_slider"
                  android:paddingBottom="20dp" android:scrollbarSize="10dp"/>
-<!--        <SeekBar android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                 android:max="9"
-                 android:layout_below="@id/score_diz"
-                 android:id="@+id/score_unit"/>-->
     </RelativeLayout>
     <!-- Belote -->
     <RelativeLayout android:orientation="horizontal"

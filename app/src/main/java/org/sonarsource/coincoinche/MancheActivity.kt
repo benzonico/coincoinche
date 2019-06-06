@@ -2,8 +2,13 @@ package org.sonarsource.coincoinche
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.widget.EditText
 import android.widget.SeekBar
 import kotlinx.android.synthetic.main.activity_manche.*
+import kotlinx.android.synthetic.main.game_row_layout.*
+import java.lang.NumberFormatException
 
 class MancheActivity : AppCompatActivity() {
 
@@ -12,8 +17,8 @@ class MancheActivity : AppCompatActivity() {
         setContentView(R.layout.activity_manche)
 
         var coincheMultiplier = 1
-        euxScore.text = "0"
-        nousScore.text = "0"
+        euxScore.text = "0".toEditable()
+        nousScore.text = "0".toEditable()
         euxTotal.text = "0"
         nousTotal.text = "0"
 
@@ -81,7 +86,48 @@ class MancheActivity : AppCompatActivity() {
                 // Write code to perform some action when touch is stopped.
             }
         }
-        score_diz.setOnSeekBarChangeListener(scoreListener)
+        score_slider.setOnSeekBarChangeListener(scoreListener)
+        euxScore.addTextChangedListener(object :TextWatcher {
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+            }
+
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+            }
+
+            override fun afterTextChanged(s: Editable) {
+                try {
+                    val intScore = s.toString().toInt()
+                    euxScore.placeCursorToEnd()
+                    if (intScore != 162 - score_slider.progress) {
+                        score_slider.progress = 162 - intScore
+                    }
+                } catch (e: NumberFormatException) {
+                    // do nothing
+                }
+            }
+
+        })
+        nousScore.addTextChangedListener(object : TextWatcher {
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+            }
+
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+            }
+
+            override fun afterTextChanged(s: Editable) {
+                try {
+                    val intScore = s.toString().toInt()
+                    if (intScore != score_slider.progress) {
+                        score_slider.progress = intScore
+                    }
+                    nousScore.placeCursorToEnd()
+                } catch (e: NumberFormatException) {
+                    // do nothing
+                }
+            }
+
+        })
+
 
         // TODO à la fin de la partie
         // val myGame = Game()
@@ -91,17 +137,24 @@ class MancheActivity : AppCompatActivity() {
     }
 
     private fun refreshScore() {
-        val nous_score = score_diz.progress// + score_unit.progress
+        val nous_score = score_slider.progress// + score_unit.progress
         val eux_score  = 162 - nous_score
         if (nous_score == 0) {
-            euxScore.text = "Capot"
-            nousScore.text = "0"
+            euxScore.text = "Capot".toEditable()
+            nousScore.text = "0".toEditable()
         } else if (eux_score == 0) {
-            nousScore.text = "Capot"
-            euxScore.text = "0"
+            nousScore.text = "Capot".toEditable()
+            euxScore.text = "0".toEditable()
         } else {
-            euxScore.text = eux_score.toString()
-            nousScore.text = nous_score.toString()
+            euxScore.text = eux_score.toString().toEditable()
+            nousScore.text = nous_score.toString().toEditable()
         }
     }
+
+    // handy extension methods
+    fun String.toEditable(): Editable = Editable.Factory.getInstance().newEditable(this)
+    fun EditText.placeCursorToEnd() {
+        this.setSelection(this.text.length)
+    }
+
 }
