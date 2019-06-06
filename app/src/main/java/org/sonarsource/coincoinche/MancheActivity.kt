@@ -23,10 +23,11 @@ class MancheActivity : AppCompatActivity() {
         val nousContract = nousButton.isChecked
         var contract = (70 + contractBar.progress * 10)
         val isCapot = contract == 190
-        if(isCapot) {
-           contract = 250
+        var contractValue = contract
+        if (isCapot) {
+            contractValue = 250
         }
-        contract *= coincheMultiplier
+        contractValue *= coincheMultiplier
 
         var nousScoreValue = 0
         try {
@@ -43,22 +44,22 @@ class MancheActivity : AppCompatActivity() {
         if (nousContract) {
             if (nousScoreValue >= contract) {
                 // Partie faite => à arrondir
-                nousTotalValue = contract + round(nousScoreValue)
-                euxTotalValue = round(euxScoreValue)
+                nousTotalValue = contractValue + round(nousScoreValue)
+                euxTotalValue = if (coincheMultiplier == 1) round(euxScoreValue) else 0
             } else {
                 // nous sommes dedans
                 nousTotalValue = 0
-                euxTotalValue = round(162) + contract
+                euxTotalValue = round(162) + contractValue
             }
         } else {
             if (euxScoreValue >= contract) {
                 // Partie faite => à arrondir
-                euxTotalValue = contract + round(euxScoreValue)
-                nousTotalValue = round(nousScoreValue)
+                euxTotalValue = contractValue + round(euxScoreValue)
+                nousTotalValue = if (coincheMultiplier == 1) round(nousScoreValue) else 0
             } else {
                 // eux sont dedans
                 euxTotalValue = 0
-                nousTotalValue = round(162) + contract
+                nousTotalValue = round(162) + contractValue
             }
         }
 
@@ -67,10 +68,18 @@ class MancheActivity : AppCompatActivity() {
         // 0 sans être capot ?
         // Partir en étant capot ? (capot inversé)
 
+        nousTotal.text = nousTotalValue.toString().toEditable()
+        euxTotal.text = euxTotalValue.toString().toEditable()
     }
 
     private fun round(scoreValue: Int): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val unit =  scoreValue % 10
+        var diz = scoreValue - unit
+        if (unit < 5) {
+            return diz
+        } else {
+            return diz + 10
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -133,6 +142,7 @@ class MancheActivity : AppCompatActivity() {
                 } else {
                     contract.text = "" + (70 + progress * 10)
                 }
+                computeScores()
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar) {
@@ -221,6 +231,7 @@ class MancheActivity : AppCompatActivity() {
             euxScore.text = eux_score.toString().toEditable()
             nousScore.text = nous_score.toString().toEditable()
         }
+        computeScores()
     }
 
     // handy extension methods
