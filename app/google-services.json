@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "33869432861",
+    "firebase_url": "https://coincoinche-6fa30.firebaseio.com",
+    "project_id": "coincoinche-6fa30",
+    "storage_bucket": "coincoinche-6fa30.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:33869432861:android:bbd4cb24830d21d0",
+        "android_client_info": {
+          "package_name": "org.sonarsource.coincoinche"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "33869432861-tsr52mne7qrlqotre0ihvjai7nm687ja.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_OR2IkZmmiXol9QaHTYHgkWV_AEoxDWA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "33869432861-tsr52mne7qrlqotre0ihvjai7nm687ja.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

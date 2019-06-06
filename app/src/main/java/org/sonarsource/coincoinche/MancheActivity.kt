@@ -49,5 +49,11 @@ class MancheActivity : AppCompatActivity() {
         /*contractBar.setOnSeekBarChangeListener {
 
         }*/
+
+        // TODO à la fin de la partie
+        // val myGame = Game()
+        // myGame.eux = 42
+        // myGame.nous = 2000
+        // gamesRef.child(id(this)).child((0..Int.MAX_VALUE).random().toString()).setValue(myGame)
     }
 }

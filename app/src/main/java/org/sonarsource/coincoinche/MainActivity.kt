@@ -6,17 +6,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ListView
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var listView:ListView
+    private lateinit var listView: ListView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+
+        val userId = id(this)
 
         fab.setOnClickListener { view ->
             val intent = Intent(this, PartieActivity::class.java).apply {}
@@ -27,12 +32,33 @@ class MainActivity : AppCompatActivity() {
         val games = ArrayList<Game>()
         for (i in 0 until 24) {
             val myGame = Game()
-            myGame.eux = i*10
-            myGame.nous =  i*100
+            myGame.eux = i * 10
+            myGame.nous = i * 100
             games.add(myGame)
         }
+
         val adapter = PartiesListAdapter(this, games)
         listView.adapter = adapter
+
+//        val leThis = this
+//        gamesRef.child(userId).addValueEventListener(object : ValueEventListener {
+//            override fun onDataChange(dataSnapshot: DataSnapshot) {
+//                // This method is called once with the initial value and again
+//                // whenever data at this location is updated.
+//                games.clear()
+//
+//                dataSnapshot.children.mapNotNullTo(games) {
+//                    it.getValue<Game>(Game::class.java)
+//                }
+//
+//                val adapter = PartiesListAdapter(leThis, games)
+//                listView.adapter = adapter
+//            }
+//
+//            override fun onCancelled(error: DatabaseError) {
+//                // Failed to read value
+//            }
+//        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
