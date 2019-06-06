@@ -85,4 +85,34 @@
                       android:layout_alignParentRight="true"
                       android:id="@+id/euxButton2"/>
     </RelativeLayout>
+    <!-- score -->
+    <RelativeLayout android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+        <TextView android:layout_width="120dp"
+                  android:layout_height="wrap_content"
+                  android:gravity="center"
+                  android:layout_alignParentLeft="true"
+                  android:id="@+id/nousScore"/>
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="@string/total"
+                  android:gravity="center"
+                  android:layout_centerInParent="true"
+        />
+        <TextView android:layout_width="120dp"
+                  android:layout_height="wrap_content"
+                  android:textOff="@string/eux"
+                  android:gravity="center"
+                  android:textOn="@string/eux"
+                  android:layout_alignParentRight="true"
+                  android:id="@+id/euxScore"/>
+    </RelativeLayout>
+    <!-- Total -->
+    <RelativeLayout android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+    </RelativeLayout>
 </LinearLayout>

@@ -10,6 +10,8 @@ class MancheActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_manche)
+        euxScore.text = "0"
+        nousScore.text = "0"
         euxButton.setOnClickListener { view ->
             euxButton.isChecked = true
             nousButton.isChecked = false
@@ -42,13 +44,8 @@ class MancheActivity : AppCompatActivity() {
 
             override fun onStopTrackingTouch(seekBar: SeekBar) {
                 // Write code to perform some action when touch is stopped.
-//                Toast.makeText(this@MainActivity, "Progress is " + seekBar.progress + "%", Toast.LENGTH_SHORT).show()
             }
         })
-
-        /*contractBar.setOnSeekBarChangeListener {
-
-        }*/
 
         // TODO à la fin de la partie
         // val myGame = Game()
