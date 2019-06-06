@@ -1,6 +1,5 @@
 package org.sonarsource.coincoinche
 
-import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -8,7 +7,6 @@ import android.text.TextWatcher
 import android.widget.EditText
 import android.widget.SeekBar
 import kotlinx.android.synthetic.main.activity_manche.*
-import kotlinx.android.synthetic.main.game_row_layout.*
 import java.lang.NumberFormatException
 
 class MancheActivity : AppCompatActivity() {

@@ -12,6 +12,6 @@
     <string name="coincheSurcoinche">Surcoinché</string>
     <string name="total">Total</string>
     <string name="score">Score</string>
-    <string name="settings_user_id">User ID</string>
-
+    <string name="settingsUserId">User ID</string>
+    <string name="copyLabel">Copy</string>
 </resources>

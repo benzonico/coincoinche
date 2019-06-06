@@ -15,7 +15,7 @@
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:textSize="24sp"
-                  android:text="@string/settings_user_id"
+                  android:text="@string/settingsUserId"
                   android:paddingBottom="10dp"/>
     </RelativeLayout>
 
@@ -23,10 +23,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="10dp">
-        <TextView
+        <TextView android:layout_alignParentLeft="true"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_centerInParent="true"
+                  android:layout_gravity="center_vertical"
+                  android:id="@+id/userIdText"/>
+        <Button android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/userIdText"/>
+                android:layout_centerInParent="true"
+                android:layout_gravity="center_vertical"
+                android:id="@+id/userIdCopy"
+                android:text="@string/copyLabel"/>
     </RelativeLayout>
 
 </LinearLayout>
