@@ -3,8 +3,6 @@ package org.sonarsource.coincoinche
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.LinearLayout
 import android.widget.ListView
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
@@ -16,10 +14,8 @@ class PartieActivity : AppCompatActivity() {
     private lateinit var NousLabel: TextView
     private lateinit var EuxScore: TextView
     private lateinit var NousScore: TextView
-    private var Scoreeux: Int = 0
-    private var Scorenous: Int = 0
-    private var game: Game? = null
-    private var adapter: MancheListAdapter? = null
+    private lateinit var game: Game
+    private lateinit var adapter: MancheListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,20 +35,19 @@ class PartieActivity : AppCompatActivity() {
 
         listView = findViewById(R.id.manches_list)
 
-
-        val manches = game?.manches
-
-        adapter = manches?.let { MancheListAdapter(this, it) }
+        adapter = MancheListAdapter(this, game.manches)
         listView.adapter = adapter
 
 
 
-        //A revoir quand le stockage des scores sera fait.
-        EuxScore = findViewById(R.id.scoreWholeMancheEux)
-        EuxScore.text = Scoreeux.toString()
-        NousScore = findViewById(R.id.scoreWholeMancheNous)
-        NousScore.text = Scorenous.toString()
+        updateGameScore()
+    }
 
+    private fun updateGameScore() {
+        EuxScore = findViewById(R.id.scoreWholeMancheEux)
+        EuxScore.text = game.manches.map { m -> m.eux }.sum().toString()
+        NousScore = findViewById(R.id.scoreWholeMancheNous)
+        NousScore.text = game.manches.map { m -> m.nous }.sum().toString()
     }
 
     override fun onBackPressed() {
@@ -65,7 +60,8 @@ class PartieActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         val manche = data?.getParcelableExtra<Manche>("Manche")
-        game?.addManche(manche)
-        adapter?.notifyDataSetChanged()
+        game.addManche(manche)
+        adapter.notifyDataSetChanged()
+        updateGameScore()
     }
 }

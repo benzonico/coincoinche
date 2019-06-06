@@ -24,7 +24,7 @@ class MancheActivity : AppCompatActivity() {
         if (euxScore.text.toString() == "0" && nousScore.text.toString() == "0") return
 
         val nousContract = nousButton.isChecked
-        var contract = (70 + contractBar.progress * 10)
+        val contract = (70 + contractBar.progress * 10)
         val isCapot = contract == 190
         var contractValue = contract
         if (isCapot) {
