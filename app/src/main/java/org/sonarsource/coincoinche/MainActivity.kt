@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONArray
 import org.json.JSONTokener
 import java.io.File
+import java.io.FileNotFoundException
 
 class MainActivity : AppCompatActivity() {
     private val dataFilename = "games_data.json"
@@ -106,12 +107,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun readData() {
-        val file = File(baseContext.filesDir, dataFilename)
-        val contents = file.readText()
-        val jsonArray = JSONArray(JSONTokener(contents))
-        for (i in 0 until jsonArray.length()) {
-            val jsonGame = jsonArray.getJSONObject(i)
-            games.add(Game.fromJson(jsonGame))
+        try {
+            val file = File(baseContext.filesDir, dataFilename)
+            val contents = file.readText()
+            val jsonArray = JSONArray(JSONTokener(contents))
+            for (i in 0 until jsonArray.length()) {
+                val jsonGame = jsonArray.getJSONObject(i)
+                games.add(Game.fromJson(jsonGame))
+            }
+        }
+        catch(e: FileNotFoundException){
+            
         }
     }
 
