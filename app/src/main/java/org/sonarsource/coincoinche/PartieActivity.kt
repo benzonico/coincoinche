@@ -2,6 +2,9 @@ package org.sonarsource.coincoinche
 
 import android.app.Activity
 import android.content.Intent
+import android.database.DataSetObserver
+import android.graphics.Paint
+import android.graphics.Typeface
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ListView
@@ -39,6 +42,12 @@ class PartieActivity : AppCompatActivity() {
         listView = findViewById(R.id.manches_list)
 
         adapter = MancheListAdapter(this, game)
+        adapter.registerDataSetObserver(object : DataSetObserver() {
+            override fun onChanged() {
+                super.onChanged()
+                updateGameScore()
+            }
+        })
         listView.adapter = adapter
         updateGameScore()
     }
@@ -46,8 +55,28 @@ class PartieActivity : AppCompatActivity() {
     private fun updateGameScore() {
         game.updateScore()
         EuxScore = findViewById(R.id.scoreWholeMancheEux)
-        EuxScore.text = game.eux.toString()
         NousScore = findViewById(R.id.scoreWholeMancheNous)
+        if (game.eux > game.nous) {
+            EuxScore.setTypeface(EuxScore.typeface, Typeface.BOLD)
+            NousScore.setTypeface(null, Typeface.NORMAL)
+
+            EuxScore.setTextColor(resources.getColor(R.color.colorPrimary))
+            NousScore.setTextColor(resources.getColor(R.color.abc_primary_text_material_dark))
+        } else if (game.nous > game.eux) {
+
+            NousScore.setTypeface(EuxScore.typeface, Typeface.BOLD)
+            EuxScore.setTypeface(null, Typeface.NORMAL)
+
+            NousScore.setTextColor(resources.getColor(R.color.colorPrimary))
+            EuxScore.setTextColor(resources.getColor(R.color.abc_primary_text_material_dark))
+        } else {
+            EuxScore.setTypeface(null, Typeface.NORMAL)
+            NousScore.setTypeface(null, Typeface.NORMAL)
+
+            NousScore.setTextColor(resources.getColor(R.color.abc_primary_text_material_dark))
+            EuxScore.setTextColor(resources.getColor(R.color.abc_primary_text_material_dark))
+        }
+        EuxScore.text = game.eux.toString()
         NousScore.text = game.nous.toString()
     }
 
