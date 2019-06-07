@@ -39,6 +39,8 @@
             android:layout_height="wrap_content" android:id="@+id/labelMancheNous"
             android:layout_centerHorizontal="true"
             android:layout_toRightOf="@id/imageMancheNous"
+            android:visibility="invisible"
+
     />
 
     <TextView
@@ -64,13 +66,12 @@
             app:srcCompat="@android:drawable/star_big_on"/>
 
 
-
-
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/labelMancheEux"
             android:layout_centerHorizontal="true"
             android:layout_toLeftOf="@id/imageMancheEux"
+            android:visibility="invisible"
     />
 
     <TextView

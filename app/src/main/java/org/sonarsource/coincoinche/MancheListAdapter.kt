@@ -42,12 +42,16 @@ class MancheListAdapter(private val context: Context, private val game:Game) : B
             refresh()
         }
         if (manche.eux > manche.nous) {
-            rowView.imageMancheNous.setImageResource(R.drawable.ic_looser_40dp)
-            rowView.imageMancheEux.setImageResource(R.drawable.ic_star_yellow_40dp)
+//            rowView.imageMancheNous.setImageResource(R.drawable.ic_looser_40dp)
+//            rowView.imageMancheEux.setImageResource(R.drawable.ic_star_yellow_40dp)
+            rowView.imageMancheNous.setImageResource(R.drawable.ic_radio_button_unchecked_red_40dp)
+            rowView.imageMancheEux.setImageResource(R.drawable.ic_radio_button_checked_green_40dp)
         }
         else {
-            rowView.imageMancheEux.setImageResource(R.drawable.ic_looser_40dp)
-            rowView.imageMancheNous.setImageResource(R.drawable.ic_star_yellow_40dp)
+//            rowView.imageMancheEux.setImageResource(R.drawable.ic_looser_40dp)
+//            rowView.imageMancheNous.setImageResource(R.drawable.ic_star_yellow_40dp)
+            rowView.imageMancheEux.setImageResource(R.drawable.ic_radio_button_unchecked_red_40dp)
+            rowView.imageMancheNous.setImageResource(R.drawable.ic_radio_button_checked_green_40dp)
         }
 
 

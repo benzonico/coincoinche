@@ -25,6 +25,8 @@
                  android:id="@+id/deleteGame"
                  android:focusable="false"
                  android:focusableInTouchMode="false"
+
+
     />
 
     <ImageView
@@ -64,6 +66,14 @@
 
             android:layout_toLeftOf="@id/hyphen"
     />
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/dateGame"
+            android:layout_below="@id/labelNous"
+            android:paddingTop="20dp"
+            android:layout_toRightOf="@id/imageGameNous"
 
+
+    />
 
 </RelativeLayout>
