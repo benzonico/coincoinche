@@ -1,6 +1,5 @@
 package org.sonarsource.coincoinche
 
-
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -9,9 +8,10 @@ import android.widget.BaseAdapter
 import kotlinx.android.synthetic.main.partie_row_layout.view.*
 import kotlinx.android.synthetic.main.activity_partie.*
 import kotlinx.android.synthetic.main.activity_partie.view.*
+import kotlinx.android.synthetic.main.game_row_layout.view.*
 import kotlinx.android.synthetic.main.partie_row_layout.view.hyphen
 
-class MancheListAdapter(private val context: Context, private val dataSource: List<Manche>) : BaseAdapter() {
+class MancheListAdapter(private val context: Context, private val dataSource: ArrayList<Manche>) : BaseAdapter() {
 
     private val inflater: LayoutInflater
             = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -37,7 +37,17 @@ class MancheListAdapter(private val context: Context, private val dataSource: Li
         rowView.labelMancheEux.text = "Eux"
         rowView.labelMancheNous.text = "Nous"
 
+        rowView.deleteManche.setOnClickListener {
+            dataSource.removeAt(position)
+            refresh()
+        }
+
         return rowView
     }
+
+    fun refresh() {
+        this.notifyDataSetChanged()
+    }
+
 
 }

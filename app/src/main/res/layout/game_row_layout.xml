@@ -6,6 +6,7 @@
                 android:padding="10dp"
                 android:paddingRight="10dp"
                 android:layout_centerVertical="true"
+                android:descendantFocusability="blocksDescendants"
 >
 
 
@@ -16,6 +17,16 @@
             android:paddingRight="40dp"
             app:srcCompat="@mipmap/ic_launcher_round"
     />
+
+    <ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content"
+                 android:layout_centerHorizontal="true"
+                 android:layout_alignParentBottom="true"
+                 app:srcCompat="@drawable/ic_delete_white_24dp"
+                 android:id="@+id/deleteGame"
+                 android:focusable="false"
+                 android:focusableInTouchMode="false"
+    />
+
     <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/imageGameEux"

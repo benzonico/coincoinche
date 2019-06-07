@@ -123,7 +123,7 @@ class MancheActivity : AppCompatActivity() {
 
     private fun round(scoreValue: Int): Int {
         val unit = scoreValue % 10
-        var diz = scoreValue - unit
+        val diz = scoreValue - unit
         if (unit < 5) {
             return diz
         } else {

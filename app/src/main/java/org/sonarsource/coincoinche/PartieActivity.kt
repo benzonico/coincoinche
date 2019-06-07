@@ -7,6 +7,9 @@ import android.os.Bundle
 import android.widget.ListView
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
+import android.support.v7.widget.RecyclerView.ViewHolder
+import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.helper.ItemTouchHelper
 
 class PartieActivity : AppCompatActivity() {
 
@@ -32,7 +35,6 @@ class PartieActivity : AppCompatActivity() {
         EuxLabel.text = "Eux"
         NousLabel = findViewById(R.id.labelWholeMancheNous)
         NousLabel.text = "Nous"
-
 
         listView = findViewById(R.id.manches_list)
 

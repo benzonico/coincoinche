@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import kotlinx.android.synthetic.main.game_row_layout.view.*
 
-class PartiesListAdapter(private val context: Context, private val dataSource: List<Game>) : BaseAdapter() {
+class PartiesListAdapter(private val context: Context, private val dataSource: ArrayList<Game>) : BaseAdapter() {
 
     private val inflater: LayoutInflater
             = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -24,6 +24,10 @@ class PartiesListAdapter(private val context: Context, private val dataSource: L
         return position.toLong()
     }
 
+    fun refresh() {
+        this.notifyDataSetChanged()
+    }
+
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         // Get view for row item
         val rowView = inflater.inflate(R.layout.game_row_layout, parent, false)
@@ -33,7 +37,11 @@ class PartiesListAdapter(private val context: Context, private val dataSource: L
         rowView.labelEux.text = "Eux"
         rowView.labelNous.text = "Nous"
 
+        rowView.deleteGame.setOnClickListener {
+            dataSource.removeAt(position)
+            refresh()
+        }
+
         return rowView
     }
-
 }
