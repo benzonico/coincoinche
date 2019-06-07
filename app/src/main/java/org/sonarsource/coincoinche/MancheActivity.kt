@@ -147,6 +147,7 @@ class MancheActivity : AppCompatActivity() {
             couleur_carreau.isChecked = false
             couleur_trefle.isChecked = false
             couleur = COEUR
+            computeScores()
         }
         couleur_pique.setOnClickListener {
             couleur_coeur.isChecked = false
@@ -154,6 +155,7 @@ class MancheActivity : AppCompatActivity() {
             couleur_carreau.isChecked = false
             couleur_trefle.isChecked = false
             couleur = PIQUE
+            computeScores()
         }
         couleur_carreau.setOnClickListener {
             couleur_coeur.isChecked = false
@@ -161,6 +163,7 @@ class MancheActivity : AppCompatActivity() {
             couleur_carreau.isChecked = true
             couleur_trefle.isChecked = false
             couleur = CARREAU
+            computeScores()
         }
         couleur_trefle.setOnClickListener {
             couleur_coeur.isChecked = false
@@ -168,6 +171,7 @@ class MancheActivity : AppCompatActivity() {
             couleur_carreau.isChecked = false
             couleur_trefle.isChecked = true
             couleur = TREFLE
+            computeScores()
         }
 
         euxButton.setOnClickListener {
