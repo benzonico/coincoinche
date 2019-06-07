@@ -1,5 +1,6 @@
 package org.sonarsource.coincoinche
 
+import android.app.Activity
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -10,7 +11,8 @@ import kotlinx.android.synthetic.main.activity_manche.*
 import java.lang.NumberFormatException
 import kotlin.math.max
 import android.content.Intent
-
+import android.content.res.ColorStateList
+import android.view.View
 
 
 class MancheActivity : AppCompatActivity() {
@@ -19,10 +21,15 @@ class MancheActivity : AppCompatActivity() {
     var couleur = ""
 
     private fun computeScores() {
-        if (!euxButton.isChecked && !nousButton.isChecked) return
-        if (contractBar.progress == 0) return
-        if (euxScore.text.toString() == "0" && nousScore.text.toString() == "0") return
-
+        if (!canSaveScore()) {
+            fab.setImageResource(R.drawable.ic_clear_white_24dp)
+            fab.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.colorAccent))
+            fab.setOnClickListener(discardScore())
+            return
+        }
+        fab.setImageResource(R.drawable.ic_check_white_24dp)
+        fab.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.colorPrimary))
+        fab.setOnClickListener(saveScore())
         val nousContract = nousButton.isChecked
         val contract = (70 + contractBar.progress * 10)
         val isCapot = contract == 190
@@ -105,6 +112,13 @@ class MancheActivity : AppCompatActivity() {
 
         nousTotal.text = nousTotalValue.toString().toEditable()
         euxTotal.text = euxTotalValue.toString().toEditable()
+    }
+
+    private fun canSaveScore(): Boolean {
+        if (!euxButton.isChecked && !nousButton.isChecked) return false
+        if (contractBar.progress == 0) return false
+        if (euxScore.text.toString() == "0" && nousScore.text.toString() == "0") return false
+        return true
     }
 
     private fun round(scoreValue: Int): Int {
@@ -195,20 +209,7 @@ class MancheActivity : AppCompatActivity() {
             coincheMultiplier = 4
             computeScores()
         }
-        fab.setOnClickListener { view ->
-            val manche = Manche()
-            manche.eux = euxTotal.text.toString().toInt()
-            manche.nous = nousTotal.text.toString().toInt()
-            val intent = Intent()
-            intent.putExtra("Manche", manche)
-            setResult(0, intent)
-/*            val filename = "myfile"
-            val fileContents = "Hello world!"
-            baseContext.openFileOutput(filename, Context.MODE_PRIVATE).use {
-                it.write(fileContents.toByteArray())
-            }*/
-            finish()
-        }
+        fab.setOnClickListener(discardScore())
 
         contractBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
@@ -300,6 +301,20 @@ class MancheActivity : AppCompatActivity() {
         // myGame.eux = 42
         // myGame.nous = 2000
         // gamesRef.child(id(this)).child((0..Int.MAX_VALUE).random().toString()).setValue(myGame)
+    }
+
+    private fun discardScore(): (View) -> Unit {
+        return { view ->
+            setResult(Activity.RESULT_CANCELED, Intent())
+            finish()
+        }
+    }
+    private fun saveScore(): (View) -> Unit {
+        return { view ->
+            val manche = Manche(euxTotal.text.toString().toInt(), nousTotal.text.toString().toInt())
+            setResult(Activity.RESULT_OK, Intent().putExtra("Manche", manche))
+            finish()
+        }
     }
 
     private fun refreshScore() {

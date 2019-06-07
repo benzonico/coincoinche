@@ -1,5 +1,6 @@
 package org.sonarsource.coincoinche
 
+import android.app.Activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -57,9 +58,11 @@ class PartieActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        val manche = data?.getParcelableExtra<Manche>("Manche")
-        game.addManche(manche)
-        adapter.notifyDataSetChanged()
-        updateGameScore()
+        if (resultCode == Activity.RESULT_OK) {
+            val manche = data?.getParcelableExtra<Manche>("Manche")
+            game.addManche(manche)
+            adapter.notifyDataSetChanged()
+            updateGameScore()
+        }
     }
 }
