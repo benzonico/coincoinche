@@ -8,8 +8,12 @@ import java.io.FileNotFoundException
 import java.util.*
 import kotlin.collections.ArrayList
 
+const val COEUR = 0
+const val PIQUE = 1
+const val CARREAU = 2
+const val TREFLE = 3
 private var uniqueID: String? = null
-private val PREF_UNIQUE_ID = "PREF_UNIQUE_ID"
+private const val PREF_UNIQUE_ID = "PREF_UNIQUE_ID"
 @Synchronized
 fun id(context: Context): String {
     if (uniqueID == null) {

@@ -18,7 +18,7 @@ import android.view.View
 class MancheActivity : AppCompatActivity() {
 
     var coincheMultiplier = 1
-    var couleur = ""
+    var couleur = -1
 
     private fun computeScores() {
         if (!canSaveScore()) {
@@ -118,6 +118,7 @@ class MancheActivity : AppCompatActivity() {
         if (!euxButton.isChecked && !nousButton.isChecked) return false
         if (contractBar.progress == 0) return false
         if (euxScore.text.toString() == "0" && nousScore.text.toString() == "0") return false
+        if(couleur == -1) return false
         return true
     }
 
@@ -145,28 +146,28 @@ class MancheActivity : AppCompatActivity() {
             couleur_pique.isChecked = false
             couleur_carreau.isChecked = false
             couleur_trefle.isChecked = false
-            couleur = "coeur"
+            couleur = COEUR
         }
         couleur_pique.setOnClickListener {
             couleur_coeur.isChecked = false
             couleur_pique.isChecked = true
             couleur_carreau.isChecked = false
             couleur_trefle.isChecked = false
-            couleur = "pique"
+            couleur = PIQUE
         }
         couleur_carreau.setOnClickListener {
             couleur_coeur.isChecked = false
             couleur_pique.isChecked = false
             couleur_carreau.isChecked = true
             couleur_trefle.isChecked = false
-            couleur = "carreau"
+            couleur = CARREAU
         }
         couleur_trefle.setOnClickListener {
             couleur_coeur.isChecked = false
             couleur_pique.isChecked = false
             couleur_carreau.isChecked = false
             couleur_trefle.isChecked = true
-            couleur = "trefle"
+            couleur = TREFLE
         }
 
         euxButton.setOnClickListener {
@@ -311,7 +312,7 @@ class MancheActivity : AppCompatActivity() {
     }
     private fun saveScore(): (View) -> Unit {
         return { view ->
-            val manche = Manche(euxTotal.text.toString().toInt(), nousTotal.text.toString().toInt())
+            val manche = Manche(nousButton.isChecked, euxTotal.text.toString().toInt(), nousTotal.text.toString().toInt(), couleur)
             setResult(Activity.RESULT_OK, Intent().putExtra("Manche", manche))
             finish()
         }

@@ -29,8 +29,9 @@ class MancheListAdapter(private val context: Context, private val game:Game) : B
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         // Get view for row item
         val rowView = inflater.inflate(R.layout.partie_row_layout, parent, false)
-        rowView.scoreMancheEux.text = ""+manches[position].eux
-        rowView.scoreMancheNous.text = ""+manches[position].nous
+        val manche = manches[position]
+        rowView.scoreMancheEux.text = ""+ manche.euxScore()
+        rowView.scoreMancheNous.text = ""+ manche.nousScore()
         rowView.hyphen.text = " - "
         rowView.labelMancheEux.text = "Eux"
         rowView.labelMancheNous.text = "Nous"
@@ -40,7 +41,7 @@ class MancheListAdapter(private val context: Context, private val game:Game) : B
             game.updateScore()
             refresh()
         }
-        if (rowView.scoreMancheEux.text.toString().toInt() > rowView.scoreMancheNous.text.toString().toInt()) {
+        if (manche.eux > manche.nous) {
             rowView.imageMancheNous.setImageResource(R.drawable.ic_looser_40dp)
             rowView.imageMancheEux.setImageResource(R.drawable.ic_star_yellow_40dp)
         }
