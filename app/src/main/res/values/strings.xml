@@ -12,7 +12,9 @@
     <string name="coincheSurcoinche">Surcoinché</string>
     <string name="total">Total</string>
     <string name="score">Score</string>
-    <string name="settingsUserId">User ID</string>
+    <string name="settingsUserId">Identifiant utilisateur</string>
+    <string name="settingsGeneral">Configuration</string>
+    <string name="settingsSaveOnline">Sauvegarde en ligne ?</string>
     <string name="copyLabel">Copy</string>
     <string name="couleur_carreau">♦</string>
     <string name="couleur_coeur">♥</string>

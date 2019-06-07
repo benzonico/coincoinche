@@ -299,13 +299,6 @@ class MancheActivity : AppCompatActivity() {
             }
 
         })
-
-
-        // TODO à la fin de la partie
-        // val myGame = Game()
-        // myGame.eux = 42
-        // myGame.nous = 2000
-        // gamesRef.child(id(this)).child((0..Int.MAX_VALUE).random().toString()).setValue(myGame)
     }
 
     private fun discardScore(): (View) -> Unit {

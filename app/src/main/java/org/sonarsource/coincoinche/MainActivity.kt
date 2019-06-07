@@ -1,21 +1,12 @@
 package org.sonarsource.coincoinche
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ListView
-/*import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener*/
-
 import kotlinx.android.synthetic.main.activity_main.*
-import org.json.JSONArray
-import org.json.JSONTokener
-import java.io.File
-import java.io.FileNotFoundException
 
 class MainActivity : AppCompatActivity() {
     private val dataFilename = "games_data.json"
@@ -23,14 +14,18 @@ class MainActivity : AppCompatActivity() {
     private lateinit var adapter: PartiesListAdapter
     var games = ArrayList<Game>()
 
+    override fun onResume() {
+        super.onResume()
+        readData(baseContext, ::reloadList)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
         // initialize games list
-        games = readData(baseContext)
-        val userId = id(this)
+        readData(baseContext, ::reloadList)
 
         fab.setOnClickListener { view ->
             startPartieActivity(Game())
@@ -40,28 +35,9 @@ class MainActivity : AppCompatActivity() {
         listView.setOnItemClickListener { parent, view, position, id ->
             startPartieActivity(games.get(position))
         }
+
         adapter = PartiesListAdapter(this, games)
         listView.adapter = adapter
-
-//        val leThis = this
-//        gamesRef.child(userId).addValueEventListener(object : ValueEventListener {
-//            override fun onDataChange(dataSnapshot: DataSnapshot) {
-//                // This method is called once with the initial value and again
-//                // whenever data at this location is updated.
-//                games.clear()
-//
-//                dataSnapshot.children.mapNotNullTo(games) {
-//                    it.getValue<Game>(Game::class.java)
-//                }
-//
-//                val adapter = PartiesListAdapter(leThis, games)
-//                listView.adapter = adapter
-//            }
-//
-//            override fun onCancelled(error: DatabaseError) {
-//                // Failed to read value
-//            }
-//        })
     }
 
     private fun startPartieActivity(game: Game) {
@@ -92,8 +68,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+
         val mygame = data?.getParcelableExtra<Game>("Game")
-        if(mygame != null) {
+        if (mygame != null) {
             if (!games.isEmpty()) {
                 val first = games.filter { g -> g.date == mygame.date }.firstOrNull()
                 if (first != null) {
@@ -106,4 +83,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun reloadList(newGames: ArrayList<Game>) {
+        games.clear()
+        games.addAll(newGames)
+
+        try {
+            adapter.notifyDataSetChanged()
+        } catch (e: UninitializedPropertyAccessException) {
+
+        }
+    }
 }
