@@ -9,7 +9,6 @@ import android.widget.ListView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    private val dataFilename = "games_data.json"
     private lateinit var listView: ListView
     private lateinit var adapter: PartiesListAdapter
     var games = ArrayList<Game>()
