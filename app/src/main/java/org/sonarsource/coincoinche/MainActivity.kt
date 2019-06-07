@@ -1,5 +1,6 @@
 package org.sonarsource.coincoinche
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity;
@@ -11,11 +12,13 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener*/
 
 import kotlinx.android.synthetic.main.activity_main.*
+import org.json.JSONArray
+import org.json.JSONTokener
+import java.io.File
 
 class MainActivity : AppCompatActivity() {
-
+    private val dataFilename = "games_data.json"
     private lateinit var listView: ListView
-    private var game: Game? = null
     private lateinit var adapter: PartiesListAdapter
     var games = ArrayList<Game>()
 
@@ -24,9 +27,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
+        // initialize games list
+        readData()
         val userId = id(this)
 
-        game = intent.getParcelableExtra<Game>("Game")
         fab.setOnClickListener { view ->
             startPartieActivity(Game())
         }
@@ -96,7 +100,25 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             games.add(0, mygame)
+            persistGames()
             adapter.notifyDataSetChanged()
+        }
+    }
+
+    private fun readData() {
+        val file = File(baseContext.filesDir, dataFilename)
+        val contents = file.readText()
+        val jsonArray = JSONArray(JSONTokener(contents))
+        for (i in 0 until jsonArray.length()) {
+            val jsonGame = jsonArray.getJSONObject(i)
+            games.add(Game.fromJson(jsonGame))
+        }
+    }
+
+    private fun persistGames() {
+        val fileContents = JSONArray(games.map { g -> g.toJson() }).toString()
+        baseContext.openFileOutput(dataFilename, Context.MODE_PRIVATE).use {
+          it.write(fileContents.toByteArray())
         }
     }
 }
