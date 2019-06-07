@@ -6,22 +6,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import kotlinx.android.synthetic.main.partie_row_layout.view.*
-import kotlinx.android.synthetic.main.activity_partie.*
-import kotlinx.android.synthetic.main.activity_partie.view.*
-import kotlinx.android.synthetic.main.game_row_layout.view.*
 import kotlinx.android.synthetic.main.partie_row_layout.view.hyphen
 
-class MancheListAdapter(private val context: Context, private val dataSource: ArrayList<Manche>) : BaseAdapter() {
+class MancheListAdapter(private val context: Context, private val game:Game) : BaseAdapter() {
 
     private val inflater: LayoutInflater
             = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+    private val manches = game.manches
 
     override fun getCount(): Int {
-        return dataSource.size
+        return manches.size
     }
 
     override fun getItem(position: Int): Any {
-        return dataSource[position]
+        return manches[position]
     }
 
     override fun getItemId(position: Int): Long {
@@ -31,14 +29,15 @@ class MancheListAdapter(private val context: Context, private val dataSource: Ar
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         // Get view for row item
         val rowView = inflater.inflate(R.layout.partie_row_layout, parent, false)
-        rowView.scoreMancheEux.text = ""+dataSource[position].eux
-        rowView.scoreMancheNous.text = ""+dataSource[position].nous
+        rowView.scoreMancheEux.text = ""+manches[position].eux
+        rowView.scoreMancheNous.text = ""+manches[position].nous
         rowView.hyphen.text = " - "
         rowView.labelMancheEux.text = "Eux"
         rowView.labelMancheNous.text = "Nous"
 
         rowView.deleteManche.setOnClickListener {
-            dataSource.removeAt(position)
+            manches.removeAt(position)
+            game.updateScore()
             refresh()
         }
 
@@ -47,7 +46,7 @@ class MancheListAdapter(private val context: Context, private val dataSource: Ar
 
     fun refresh() {
         this.notifyDataSetChanged()
+        updateAGame(game, context)
     }
-
 
 }

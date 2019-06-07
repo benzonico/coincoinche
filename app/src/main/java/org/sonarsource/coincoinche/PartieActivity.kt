@@ -38,7 +38,7 @@ class PartieActivity : AppCompatActivity() {
 
         listView = findViewById(R.id.manches_list)
 
-        adapter = MancheListAdapter(this, game.manches)
+        adapter = MancheListAdapter(this, game)
         listView.adapter = adapter
         updateGameScore()
     }
@@ -65,6 +65,7 @@ class PartieActivity : AppCompatActivity() {
             game.addManche(manche)
             adapter.notifyDataSetChanged()
             updateGameScore()
+            updateAGame(game, baseContext)
         }
     }
 }

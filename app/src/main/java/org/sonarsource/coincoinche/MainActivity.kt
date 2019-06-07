@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         // initialize games list
-        readData()
+        games = readData(baseContext)
         val userId = id(this)
 
         fab.setOnClickListener { view ->
@@ -101,30 +101,9 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             games.add(0, mygame)
-            persistGames()
+            persistGames(games, baseContext)
             adapter.notifyDataSetChanged()
         }
     }
 
-    private fun readData() {
-        try {
-            val file = File(baseContext.filesDir, dataFilename)
-            val contents = file.readText()
-            val jsonArray = JSONArray(JSONTokener(contents))
-            for (i in 0 until jsonArray.length()) {
-                val jsonGame = jsonArray.getJSONObject(i)
-                games.add(Game.fromJson(jsonGame))
-            }
-        }
-        catch(e: FileNotFoundException){
-            
-        }
-    }
-
-    private fun persistGames() {
-        val fileContents = JSONArray(games.map { g -> g.toJson() }).toString()
-        baseContext.openFileOutput(dataFilename, Context.MODE_PRIVATE).use {
-          it.write(fileContents.toByteArray())
-        }
-    }
 }

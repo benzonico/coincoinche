@@ -38,7 +38,8 @@ class PartiesListAdapter(private val context: Context, private val dataSource: A
         rowView.labelNous.text = "Nous"
 
         rowView.deleteGame.setOnClickListener {
-            dataSource.removeAt(position)
+            val removedGame = dataSource.removeAt(position)
+            deleteGame(removedGame, context)
             refresh()
         }
 
