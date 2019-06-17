@@ -19,6 +19,7 @@ class MancheActivity : AppCompatActivity() {
 
     var coincheMultiplier = 1
     var couleur = -1
+    var showNameEditor = false
 
     private fun computeScores() {
         if (!canSaveScore()) {
@@ -27,9 +28,11 @@ class MancheActivity : AppCompatActivity() {
             fab.setOnClickListener(discardScore())
             return
         }
+
         fab.setImageResource(R.drawable.ic_check_white_24dp)
         fab.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.colorPrimary))
         fab.setOnClickListener(saveScore())
+
         val nousContract = nousButton.isChecked
         val contract = (70 + contractBar.progress * 10)
         val isCapot = contract == 190
@@ -140,6 +143,13 @@ class MancheActivity : AppCompatActivity() {
         nousScore.text = "0".toEditable()
         euxTotal.text = "0"
         nousTotal.text = "0"
+
+        editNamesButton.setOnClickListener {
+            showNameEditor = !showNameEditor
+            println("### $showNameEditor")
+            if (showNameEditor) playerNamesEditor.visibility = View.VISIBLE
+            else playerNamesEditor.visibility = View.GONE
+        }
 
         couleur_coeur.setOnClickListener {
             couleur_coeur.isChecked = true

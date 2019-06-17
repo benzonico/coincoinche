@@ -31,19 +31,77 @@
                           android:textOn="@string/nous"
                           android:layout_alignParentLeft="true"
                           android:id="@+id/nousButton"/>
-            <TextView android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:text="@string/preneur"
-                      android:gravity="center"
-                      android:layout_centerInParent="true"
-            />
+
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:gravity="center"
+                          android:layout_centerInParent="true"
+                          android:orientation="vertical">
+                <TextView android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="@string/preneur"
+                          android:id="@+id/preneurLabel"
+                />
+
+                <ImageButton android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:layout_centerHorizontal="true"
+                             android:layout_below="@id/preneurLabel"
+                             app:srcCompat="@drawable/ic_edit_white_24dp"
+                             android:id="@+id/editNamesButton"
+                             android:focusable="false"
+                             android:focusableInTouchMode="false"
+                />
+                />
+            </LinearLayout>
             <ToggleButton android:layout_width="120dp"
                           android:layout_height="wrap_content"
                           android:textOff="@string/eux"
                           android:textOn="@string/eux"
                           android:layout_alignParentRight="true"
                           android:id="@+id/euxButton"/>
+
         </RelativeLayout>
+        <!-- Joueurs -->
+
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:id="@+id/playerNamesEditor" android:orientation="vertical"
+                      android:visibility="gone">
+
+            <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal">
+                <TextView android:layout_alignParentLeft="true"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:textSize="24sp"
+                          android:text="@string/nous"
+                          android:id="@+id/nousEditLabel"
+                          android:width="120dp"
+                          android:paddingBottom="30dp"/>
+
+                <EditText android:inputType="text" android:layout_width="120dp"
+                          android:layout_height="wrap_content"
+                          android:id="@+id/nousName"
+                android:layout_toRightOf="@id/nousEditLabel"/>
+            </RelativeLayout>
+
+            <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal">
+                <TextView android:layout_alignParentLeft="true"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:textSize="24sp"
+                          android:text="@string/eux"
+                          android:width="120dp"
+                          android:paddingBottom="30dp"/>
+
+                <EditText android:inputType="text" android:layout_width="120dp"
+                          android:layout_height="wrap_content"
+                          android:id="@+id/euxName"/>
+            </RelativeLayout>
+
+
+
+
+        </LinearLayout>
+
         <!-- Contrat -->
         <RelativeLayout android:orientation="horizontal"
                         android:layout_width="match_parent"
